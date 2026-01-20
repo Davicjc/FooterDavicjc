@@ -11,9 +11,9 @@
         position: 'absolute',
         bottom: '10px',
         right: '10px',
-        padding: '5px',
+        padding: '3px',
         color: '#fff',
-        fontSize: '11px',
+        fontSize: '9px',
         zIndex: '9999',
         cursor: 'move',
         userSelect: 'none',
@@ -25,7 +25,7 @@
     Object.assign(link.style, {
         color: '#fff',
         textDecoration: 'none',
-        fontSize: '11px',
+        fontSize: '9px',
         opacity: '0.6'
     });
     
