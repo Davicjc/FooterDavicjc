@@ -1,4 +1,4 @@
-# Footer Signature - By Davicjc
+# Footer Davicjc
 
 Link de assinatura simples que se **atualiza automaticamente** do GitHub.
 
@@ -10,7 +10,7 @@ Adicione este código no seu HTML (antes de fechar `</body>`):
 
 ```html
 <!-- Carrega direto do GitHub - sempre atualizado! -->
-<script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer-signature.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer-davicjc.js"></script>
 ```
 
 **Vantagens:**
