@@ -25,15 +25,16 @@
     Object.assign(link.style, {
         color: '#fff',
         textDecoration: 'none',
-        fontSize: '11px'
+        fontSize: '11px',
+        opacity: '0.6'
     });
     
     link.addEventListener('mouseover', () => {
-        link.style.opacity = '0.7';
+        link.style.opacity = '0.4';
     });
     
     link.addEventListener('mouseout', () => {
-        link.style.opacity = '1';
+        link.style.opacity = '0.6';
     });
     
     // Funcionalidade de arrastar
