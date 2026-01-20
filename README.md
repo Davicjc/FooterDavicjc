@@ -10,7 +10,7 @@ Adicione este código no seu HTML (antes de fechar `</body>`):
 
 ```html
 <!-- Carrega direto do GitHub - sempre atualizado! -->
-<script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footercjc.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js"></script>
 ```
 
 **Vantagens:**
@@ -21,11 +21,11 @@ Adicione este código no seu HTML (antes de fechar `</body>`):
 
 ### Alternativa: Download Local
 
-1. Baixe o arquivo `footercjc.js`
+1. Baixe o arquivo `footer_cjc.js`
 2. Adicione no seu HTML:
 
 ```html
-<script src="footercjc.js"></script>
+<script src="footer_cjc.js"></script>
 ```
 
 ## ✨ Características
@@ -45,7 +45,7 @@ O footer usa os seguintes estilos por padrão:
 - Posição: Absolute (não acompanha a rolagem)
 - Local: 10px do fundo, 10px da direita
 
-Para personalizar, você pode editar o arquivo `footercjc.js` diretamente.
+Para personalizar, você pode editar o arquivo `footer_cjc.js` diretamente.
 
 ## 🌐 O que o Link Faz
 
