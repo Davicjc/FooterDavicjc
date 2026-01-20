@@ -3,69 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Footer Davicjc</title>
+    <title>Meu Site - Exemplo</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 80px 20px;
+            text-align: center;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px;
-        }
-        h1 {
+        
+        header h1 {
             font-size: 3em;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
-        p {
+        
+        header p {
             font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            opacity: 0.9;
         }
-        .box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            padding: 30px;
             border-radius: 10px;
-            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        /* Seta apontando para o footer (apenas para demonstração) */
+        .arrow-to-footer {
+            font-size: 40px;
+            color: #ffeb3b;
+            animation: bounce 2s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Bem-vindo ao Meu Site</h1>
+        <p>Um exemplo de página web moderna e responsiva</p>
+    </header>
+
     <div class="container">
-        <h1>Demo do Footer</h1>
-        <p>Esta é uma página de demonstração para visualizar o footer.</p>
-        
-        <div class="box">
-            <h2>Como funciona?</h2>
-            <p>O footer aparece automaticamente no canto inferior direito da página.</p>
-            <p>Você pode arrastar o footer para qualquer posição clicando e segurando.</p>
-        </div>
-        
-        <div class="box">
-            <h2>Características</h2>
-            <ul>
-                <li>Discreto - apenas texto branco</li>
-                <li>Posição fixa no canto inferior direito</li>
-                <li>Arrastável para qualquer lugar</li>
-                <li>Responsivo para mobile</li>
-            </ul>
-        </div>
-        
-        <div class="box">
-            <h2>Instalação</h2>
-            <p>Basta adicionar o script ao seu HTML:</p>
-            <code style="background: rgba(0,0,0,0.3); padding: 10px; display: block; border-radius: 5px;">
-                &lt;script src="footer_davicjc.js"&gt;&lt;/script&gt;
-            </code>
-        </div>
+        <section class="section">
+            <h2>Sobre Nós</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+
+        <section class="section">
+            <h2>Nossos Serviços</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Criamos sites modernos e responsivos para o seu negócio crescer na internet.</p>
+                </div>
+                <div class="card">
+                    <h3>Design Gráfico</h3>
+                    <p>Designs criativos e profissionais para fortalecer sua marca.</p>
+                </div>
+                <div class="card">
+                    <h3>Consultoria</h3>
+                    <p>Ajudamos você a encontrar as melhores soluções para seus projetos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Nossa Missão</h2>
+            <p>Entregar soluções de qualidade que superem as expectativas dos nossos clientes, utilizando as melhores práticas e tecnologias do mercado.</p>
+            <p>Acreditamos na inovação constante e no desenvolvimento de produtos que realmente fazem a diferença na vida das pessoas.</p>
+        </section>
+
+        <section class="section">
+            <h2>Entre em Contato</h2>
+            <p>Tem um projeto em mente? Adoraríamos conversar com você!</p>
+            <p>Email: contato@exemplo.com<br>
+            Telefone: (11) 1234-5678</p>
+        </section>
     </div>
 
-    <!-- Carregando o footer localmente -->
-    <script src="footer_davicjc.js"></script>
+    <footer>
+        <p>&copy; 2026 Meu Site. Todos os direitos reservados.</p>
+        <p>Desenvolvido com dedicação e muito café ☕</p>
+        <!-- Seta apontando para o footer arrastável -->
+        <div class="arrow-to-footer" style="position: absolute; bottom: 50px; right: 50px;">↘</div>
+    </footer>
+
+    <!-- Carregando o footer -->
+    <script src="footercjc.js"></script>
 </body>
 </html>
