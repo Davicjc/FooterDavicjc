@@ -8,17 +8,14 @@
     
     // Aplicar estilos inline
     Object.assign(footer.style, {
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        padding: '8px 15px',
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        position: 'absolute',
+        bottom: '10px',
+        right: '10px',
+        padding: '5px',
         color: '#fff',
-        borderRadius: '8px',
-        fontSize: '12px',
+        fontSize: '11px',
         zIndex: '9999',
         cursor: 'move',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
         userSelect: 'none',
         transition: 'transform 0.2s ease'
     });
@@ -26,18 +23,17 @@
     // Estilizar o link
     const link = footer.querySelector('a');
     Object.assign(link.style, {
-        color: '#4CAF50',
+        color: '#fff',
         textDecoration: 'none',
-        fontWeight: 'bold',
-        fontSize: '12px'
+        fontSize: '11px'
     });
     
     link.addEventListener('mouseover', () => {
-        link.style.color = '#66BB6A';
+        link.style.opacity = '0.7';
     });
     
     link.addEventListener('mouseout', () => {
-        link.style.color = '#4CAF50';
+        link.style.opacity = '1';
     });
     
     // Funcionalidade de arrastar
@@ -108,9 +104,11 @@
     // Adicionar ao DOM quando a página carregar
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.position = 'relative';
             document.body.appendChild(footer);
         });
     } else {
+        document.body.style.position = 'relative';
         document.body.appendChild(footer);
     }
 })();
