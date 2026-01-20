@@ -1,16 +1,16 @@
 # Footer Davicjc
 
-Link de assinatura simples que se **atualiza automaticamente** do GitHub.
+Footer discreto e arrastável que aparece automaticamente no canto inferior direito da página.
 
-## 📦 Como Usar (Recomendado - Auto-atualização)
+## 📦 Como Usar
 
-### Usando CDN do GitHub
+### Usando CDN do GitHub (Recomendado)
 
 Adicione este código no seu HTML (antes de fechar `</body>`):
 
 ```html
 <!-- Carrega direto do GitHub - sempre atualizado! -->
-<script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer-davicjc.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_davicjc.js"></script>
 ```
 
 **Vantagens:**
@@ -19,38 +19,33 @@ Adicione este código no seu HTML (antes de fechar `</body>`):
 - ✅ Sempre a versão mais recente
 - ✅ CDN rápido e confiável
 
-### Alternativa: Copiar e Colar (Sem auto-atualização)
+### Alternativa: Download Local
 
-Se preferir ter controle total, cole este código onde quiser a assinatura:
+1. Baixe o arquivo `footer_davicjc.js`
+2. Adicione no seu HTML:
 
 ```html
-<a href="https://davicjc.github.io/PortfolioPessoal" target="_blank" rel="noopener">By Davicjc</a>
+<script src="footer_davicjc.js"></script>
 ```
 
-## 🎨 Personalizando o Visual
+## ✨ Características
 
-Para estilizar o link, adicione CSS no seu arquivo de estilos:
+- 📍 **Posição automática**: Aparece no canto inferior direito da página
+- 🖱️ **Arrastável**: Clique e arraste para reposicionar
+- 👆 **Touch support**: Funciona em dispositivos móveis
+- 🎨 **Discreto**: Texto branco semitransparente (60% opacidade)
+- 📱 **Responsivo**: Funciona em qualquer tamanho de tela
+- 🔗 **Link para portfólio**: Abre em nova aba
 
-```css
-/* Exemplo de estilização */
-a[href*="davicjc.github.io"] {
-    color: #666;
-    text-decoration: none;
-    font-size: 14px;
-}
+## 🎨 Personalização
 
-a[href*="davicjc.github.io"]:hover {
-    color: #000;
-}
-```
+O footer usa os seguintes estilos por padrão:
+- Cor: Branco com 60% de opacidade
+- Tamanho da fonte: 11px
+- Posição: Absolute (não acompanha a rolagem)
+- Local: 10px do fundo, 10px da direita
 
-## 📍 Onde Colocar
-
-Você pode colocar em qualquer lugar do seu site:
-- No rodapé (footer)
-- Na barra lateral (sidebar)
-- No cabeçalho (header)
-- Em qualquer div ou section
+Para personalizar, você pode editar o arquivo `footer_davicjc.js` diretamente.
 
 ## 🌐 O que o Link Faz
 
