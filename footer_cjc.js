@@ -4,7 +4,7 @@
     // Criar o elemento do footer
     const footer = document.createElement('div');
     footer.id = 'davicjc-footer';
-    footer.innerHTML = '<a href="https://davicjc.github.io/PortfolioPessoal" target="_blank" rel="noopener">By Davicjc</a>';
+    footer.innerHTML = '<a href="https://davicjc.github.io/PortfolioPessoal" target="_blank" rel="noopener">By Davicjc.</a>';
     
     // Aplicar estilos inline
     Object.assign(footer.style, {
