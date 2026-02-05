@@ -3,170 +3,716 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site - Exemplo</title>
+    <title>Mini Footer para Sites | Drag & Drop Footer JS - Davicjc</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mini Footer discreto e profissional para qualquer site. Uma linha de código JavaScript, sem dependências. Drag & drop, responsivo e com auto-update via CDN.">
+    <meta name="keywords" content="mini footer, footer javascript, footer drag and drop, footer para sites, footer html css js, footer cdn, davicjc, footer responsivo, footer profissional, footer discreto">
+    <meta name="author" content="Davicjc">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://footer.davicjc.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://footer.davicjc.com/">
+    <meta property="og:title" content="Mini Footer para Sites | Davicjc">
+    <meta property="og:description" content="Adicione um mini footer discreto e arrastável em qualquer site com apenas uma linha de código. Open source, sem dependências, auto-update via CDN.">
+    <meta property="og:image" content="https://footer.davicjc.com/og-image.png">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Mini Footer - Davicjc">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://footer.davicjc.com/">
+    <meta name="twitter:title" content="Mini Footer para Sites | Davicjc">
+    <meta name="twitter:description" content="Mini Footer discreto e arrastável com uma linha de código. Open source, zero dependências, auto-update via CDN.">
+    <meta name="twitter:image" content="https://footer.davicjc.com/og-image.png">
+
+    <!-- Tema / Favicon -->
+    <meta name="theme-color" content="#667eea">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦶</text></svg>">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "Mini Footer",
+        "description": "Footer discreto e arrastável para sites, implementável com uma linha de código JavaScript via CDN.",
+        "author": {
+            "@type": "Person",
+            "name": "Davicjc",
+            "url": "https://davicjc.github.io/PortfolioPessoal"
+        },
+        "url": "https://footer.davicjc.com/",
+        "codeRepository": "https://github.com/davicjc/FooterDavicjc",
+        "programmingLanguage": "JavaScript",
+        "license": "https://opensource.org/licenses/MIT",
+        "operatingSystem": "Any",
+        "runtimePlatform": "Browser"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            color: #e2e8f0;
+            background: #0f172a;
+            overflow-x: hidden;
         }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(102,126,234,.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(118,75,162,.25) 0%, transparent 50%),
+                #0f172a;
+        }
+
+        .hero-content { max-width: 650px; z-index: 2; position: relative; }
+
+        .badge {
+            display: inline-block;
+            background: rgba(102,126,234,.15);
+            border: 1px solid rgba(102,126,234,.3);
+            color: #a5b4fc;
+            padding: 6px 18px;
+            border-radius: 99px;
+            font-size: .85rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            animation: fadeIn .8s ease .1s both;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeIn .8s ease .2s both;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            animation: fadeIn .8s ease .35s both;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 4px 20px rgba(102,126,234,.4);
+            animation: fadeIn .8s ease .5s both;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102,126,234,.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Features ── */
+        .features {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feat {
+            background: rgba(30,41,59,.6);
+            border: 1px solid rgba(148,163,184,.1);
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: all .3s ease;
+        }
+
+        .feat:hover {
+            border-color: rgba(102,126,234,.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(102,126,234,.1);
+        }
+
+        .feat-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .feat h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+        }
+
+        .feat p {
+            color: #94a3b8;
+            line-height: 1.65;
+            font-size: .95rem;
+        }
+
+        /* ── Code Section ── */
+        .code-section {
             padding: 80px 20px;
             text-align: center;
         }
-        
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+
+        .code-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 12px;
         }
-        
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
+
+        .code-section > p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
         }
-        
-        .container {
-            max-width: 1200px;
+
+        .code-box {
+            background: #1e293b;
+            border: 1px solid rgba(148,163,184,.15);
+            border-radius: 14px;
+            max-width: 650px;
             margin: 0 auto;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .code-bar {
+            background: rgba(15,23,42,.6);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(148,163,184,.1);
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-r { background: #ef4444; }
+        .dot-y { background: #eab308; }
+        .dot-g { background: #22c55e; }
+
+        .code-bar span {
+            margin-left: auto;
+            color: #64748b;
+            font-size: .8rem;
+            font-weight: 500;
+        }
+
+        .code-body {
+            padding: 24px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: .9rem;
+            color: #e2e8f0;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+
+        .code-body .comment { color: #64748b; }
+        .code-body .tag { color: #7dd3fc; }
+        .code-body .attr { color: #a5b4fc; }
+        .code-body .str { color: #86efac; }
+
+        .code-copy {
+            display: inline-block;
+            margin-top: 24px;
+            color: #a5b4fc;
+            font-size: .9rem;
+            font-weight: 500;
+        }
+
+        /* ── Mini stats ── */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
             padding: 60px 20px;
+            flex-wrap: wrap;
         }
-        
-        .section {
-            margin-bottom: 60px;
+
+        .stat { text-align: center; }
+
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .section h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #667eea;
+
+        .stat-label {
+            color: #64748b;
+            font-size: .9rem;
+            margin-top: 4px;
         }
-        
-        .section p {
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            color: #666;
+
+        /* ── Text Sections ── */
+        .text-section {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+
+        .text-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 16px;
         }
-        
-        .card {
-            background: #f8f9fa;
-            padding: 30px;
+
+        .text-section .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .scenario {
+            background: rgba(30,41,59,.6);
+            border: 1px solid rgba(148,163,184,.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .scenario h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scenario p {
+            color: #94a3b8;
+            line-height: 1.7;
+            font-size: .95rem;
+        }
+
+        .scenario p + p {
+            margin-top: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102,126,234,.15), rgba(118,75,162,.15));
+            border: 1px solid rgba(102,126,234,.3);
+            border-radius: 14px;
+            padding: 28px 32px;
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            color: #c7d2fe;
+            line-height: 1.7;
+            font-size: .95rem;
+        }
+
+        .highlight-box strong {
+            color: #a5b4fc;
+        }
+
+        .diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .diagram-box {
+            background: rgba(30,41,59,.8);
+            border: 1px solid rgba(148,163,184,.15);
+            border-radius: 12px;
+            padding: 18px 22px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .diagram-box .icon { font-size: 1.5rem; margin-bottom: 6px; display: block; }
+        .diagram-box .label { color: #94a3b8; font-size: .8rem; }
+        .diagram-arrow { color: #667eea; font-size: 1.5rem; font-weight: 700; }
+
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps li {
+            counter-increment: step;
+            background: rgba(30,41,59,.6);
+            border: 1px solid rgba(148,163,184,.1);
+            border-radius: 14px;
+            padding: 28px 28px 28px 80px;
+            margin-bottom: 16px;
+            position: relative;
+            transition: all .3s ease;
+        }
+
+        .steps li:hover {
+            border-color: rgba(102,126,234,.3);
+            transform: translateX(4px);
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-        }
-        
-        footer {
-            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
             color: white;
+        }
+
+        .steps li h4 {
+            color: #f1f5f9;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .steps li p {
+            color: #94a3b8;
+            font-size: .9rem;
+            line-height: 1.6;
+        }
+
+        .mini-code {
+            background: #1e293b;
+            border: 1px solid rgba(148,163,184,.12);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: .85rem;
+            color: #e2e8f0;
+            margin-top: 12px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 3px;
+            margin: 0 auto;
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            border-top: 1px solid rgba(148,163,184,.1);
             padding: 40px 20px;
             text-align: center;
-            margin-top: 60px;
-            position: relative;
+            color: #64748b;
+            font-size: .9rem;
         }
-        
-        footer p {
-            margin-bottom: 10px;
+
+        .site-footer a {
+            color: #a5b4fc;
+            text-decoration: none;
         }
-        
-        /* Seta apontando para o footer (apenas para demonstração) */
-        .arrow-to-footer {
-            font-size: 40px;
-            color: #ffeb3b;
+
+        .site-footer a:hover { text-decoration: underline; }
+
+        /* ── Arrow ── */
+        .arrow-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 2rem;
+            color: #fbbf24;
             animation: bounce 2s infinite;
+            z-index: 1000;
             pointer-events: none;
+            filter: drop-shadow(0 0 10px rgba(251,191,36,.6));
+            transition: right .4s ease, bottom .4s ease, font-size .3s ease;
         }
-        
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .features { padding: 60px 16px; }
+            .code-section { padding: 60px 16px; }
+            .stats { gap: 40px; }
+            .stat-num { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Bem-vindo ao Meu Site</h1>
-        <p>Um exemplo de página web moderna e responsiva</p>
-    </header>
 
-    <div class="container">
-        <section class="section">
-            <h2>Sobre Nós</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </section>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Open Source &bull; Vanilla JS</span>
+            <h1>Mini Footer</h1>
+            <p>Uma linha de código para adicionar um footer discreto, arrastável e profissional em qualquer site.</p>
+            <a href="https://github.com/davicjc/FooterDavicjc" target="_blank" rel="noopener" class="hero-cta">
+                ⭐ Ver no GitHub
+            </a>
+        </div>
+    </section>
 
-        <section class="section">
-            <h2>Nossos Serviços</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>Desenvolvimento Web</h3>
-                    <p>Criamos sites modernos e responsivos para o seu negócio crescer na internet.</p>
-                </div>
-                <div class="card">
-                    <h3>Design Gráfico</h3>
-                    <p>Designs criativos e profissionais para fortalecer sua marca.</p>
-                </div>
-                <div class="card">
-                    <h3>Consultoria</h3>
-                    <p>Ajudamos você a encontrar as melhores soluções para seus projetos.</p>
-                </div>
+    <!-- Features -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feat">
+                <span class="feat-icon">🖱️</span>
+                <h3>Drag & Drop</h3>
+                <p>Usuários podem arrastar e reposicionar livremente. Suporte completo a mouse e touch.</p>
             </div>
-        </section>
+            <div class="feat">
+                <span class="feat-icon">🎯</span>
+                <h3>Discreto</h3>
+                <p>Aparece sutil no canto da tela, sem interferir no layout ou na experiência do usuário.</p>
+            </div>
+            <div class="feat">
+                <span class="feat-icon">⚡</span>
+                <h3>Zero Config</h3>
+                <p>Uma tag script e pronto. Sem dependências, sem build, sem configuração.</p>
+            </div>
+            <div class="feat">
+                <span class="feat-icon">📱</span>
+                <h3>Responsivo</h3>
+                <p>Funciona perfeitamente em qualquer dispositivo — desktop, tablet ou smartphone.</p>
+            </div>
+            <div class="feat">
+                <span class="feat-icon">🪶</span>
+                <h3>Ultra Leve</h3>
+                <p>Apenas 4KB. Nenhum impacto na performance do seu site.</p>
+            </div>
+            <div class="feat">
+                <span class="feat-icon">🔄</span>
+                <h3>Auto Update</h3>
+                <p>Via CDN, atualizações chegam automaticamente sem você alterar nada.</p>
+            </div>
+        </div>
+    </section>
 
-        <section class="section">
-            <h2>Nossa Missão</h2>
-            <p>Entregar soluções de qualidade que superem as expectativas dos nossos clientes, utilizando as melhores práticas e tecnologias do mercado.</p>
-            <p>Acreditamos na inovação constante e no desenvolvimento de produtos que realmente fazem a diferença na vida das pessoas.</p>
-        </section>
+    <!-- Para que serve -->
+    <div class="divider"></div>
+    <section class="text-section">
+        <h2>Para que serve?</h2>
+        <p class="subtitle">Imagine que você é um desenvolvedor freelancer. Você cria sites para diversos clientes — lojas, portfólios, landing pages. Em todos eles, você quer deixar sua marca de forma discreta.</p>
 
-        <section class="section">
-            <h2>Entre em Contato</h2>
-            <p>Tem um projeto em mente? Adoraríamos conversar com você!</p>
-            <p>Email: contato@exemplo.com<br>
-            Telefone: (11) 1234-5678</p>
-        </section>
+        <div class="scenario">
+            <h3>💼 O problema</h3>
+            <p>Você criou 20 sites diferentes para clientes. Em cada um, colocou manualmente um footer com seu nome e link. Agora precisa mudar o link do portfólio em todos eles.</p>
+            <p><strong style="color:#f87171;">Resultado:</strong> Abrir 20 projetos, editar 20 arquivos, fazer 20 deploys. Horas de trabalho repetitivo.</p>
+        </div>
+
+        <div class="scenario">
+            <h3>✅ A solução</h3>
+            <p>Com o Mini Footer via CDN, todos os seus sites puxam o mesmo arquivo do GitHub. Quando você atualiza o código <strong style="color:#86efac;">uma única vez</strong> no repositório, <strong style="color:#86efac;">todos os sites</strong> que usam o CDN recebem a mudança automaticamente.</p>
+            <p>Mudou de portfólio? Quer trocar a cor? Altere no GitHub e pronto — 20 sites atualizados em segundos.</p>
+        </div>
+
+        <div class="diagram">
+            <div class="diagram-box">
+                <span class="icon">📝</span>
+                <span class="label">Você edita<br>no GitHub</span>
+            </div>
+            <span class="diagram-arrow">→</span>
+            <div class="diagram-box">
+                <span class="icon">☁️</span>
+                <span class="label">CDN atualiza<br>automaticamente</span>
+            </div>
+            <span class="diagram-arrow">→</span>
+            <div class="diagram-box">
+                <span class="icon">🌐</span>
+                <span class="label">Todos os sites<br>recebem a mudança</span>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>💡 Na prática:</strong> O footer serve como sua assinatura digital. Ele diz "este site foi feito por mim" de forma elegante, sem estragar o design do cliente. E o melhor — você tem controle centralizado de todos eles a partir de um único repositório.</p>
+        </div>
+    </section>
+
+    <!-- Como criar o seu -->
+    <div class="divider"></div>
+    <section class="text-section">
+        <h2>Como criar o seu</h2>
+        <p class="subtitle">Você tem duas opções: usar o meu footer direto ou criar seu próprio projeto baseado neste. Veja como:</p>
+
+        <div class="scenario">
+            <h3>🚀 Opção 1 — Usar o meu footer</h3>
+            <p>A forma mais rápida. Adicione uma tag script com o link do CDN e meu footer aparece automaticamente em seu site. Ideal se você quer usar direto sem modificar nada.</p>
+            <div class="mini-code">&lt;script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js"&gt;&lt;/script&gt;</div>
+        </div>
+
+        <div class="scenario">
+            <h3>🔧 Opção 2 — Criar seu próprio footer baseado neste</h3>
+            <p>Quer personalizar com seu nome, link e estilo? Faça um fork do projeto e crie sua versão:</p>
+        </div>
+
+        <ol class="steps">
+            <li>
+                <h4>Fork do repositório</h4>
+                <p>Acesse <a href="https://github.com/davicjc/FooterDavicjc" target="_blank" rel="noopener" style="color:#a5b4fc;">github.com/davicjc/FooterDavicjc</a> e clique em <strong style="color:#f1f5f9;">Fork</strong> para copiar o projeto para sua conta.</p>
+            </li>
+            <li>
+                <h4>Edite o footer_cjc.js</h4>
+                <p>Mude o texto, link e estilos no arquivo principal. Troque "By Davicjc" pelo seu nome e o link para seu portfólio.</p>
+                <div class="mini-code">footer.innerHTML = '&lt;a href="SEU-LINK" target="_blank"&gt;By SeuNome&lt;/a&gt;';</div>
+            </li>
+            <li>
+                <h4>Personalize o visual</h4>
+                <p>Ajuste cores, tamanho, opacidade e posição editando os estilos do objeto <code style="color:#a5b4fc; background:rgba(30,41,59,.8); padding:2px 6px; border-radius:4px;">Object.assign(footer.style, { ... })</code>.</p>
+            </li>
+            <li>
+                <h4>Faça push para seu repositório</h4>
+                <p>Envie as mudanças para o GitHub. Agora você tem seu próprio CDN personalizado.</p>
+            </li>
+            <li>
+                <h4>Use seu CDN em todos os sites</h4>
+                <p>Troque o link do CDN para apontar para seu repositório:</p>
+                <div class="mini-code">&lt;script src="https://cdn.jsdelivr.net/gh/<strong style="color:#86efac;">SEU-USER</strong>/<strong style="color:#86efac;">SEU-REPO</strong>@main/footer_cjc.js"&gt;&lt;/script&gt;</div>
+            </li>
+        </ol>
+
+        <div class="highlight-box">
+            <p><strong>🎯 Resultado final:</strong> Você terá um footer 100% seu, hospedado no seu GitHub, servido via CDN rápido, que pode ser atualizado de um lugar só e que aparece em todos os sites que você quiser. Controle total com esforço mínimo.</p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="divider"></div>
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-num">1</div>
+            <div class="stat-label">linha de código</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">4KB</div>
+            <div class="stat-label">tamanho total</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">0</div>
+            <div class="stat-label">dependências</div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Meu Site. Todos os direitos reservados.</p>
-        <p>Desenvolvido com dedicação e muito café ☕</p>
-        <!-- Seta apontando para o footer arrastável -->
-        <div class="arrow-to-footer" style="position: absolute; bottom: 50px; right: 50px;">↘</div>
+    <!-- Code -->
+    <section class="code-section">
+        <h2>Implemente em segundos</h2>
+        <p>Cole antes de fechar o &lt;/body&gt; e pronto.</p>
+
+        <div class="code-box">
+            <div class="code-bar">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+                <span>index.html</span>
+            </div>
+            <div class="code-body">
+<span class="comment">&lt;!-- Footer arrastável do Davicjc --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+            </div>
+        </div>
+
+        <p class="code-copy">✅ CDN rápido &nbsp;&bull;&nbsp; ✅ Sempre atualizado &nbsp;&bull;&nbsp; ✅ Cross-browser</p>
+    </section>
+
+    <!-- Footer do site -->
+    <footer class="site-footer">
+        <p>&copy; 2026 <a href="https://davicjc.github.io/PortfolioPessoal" target="_blank" rel="noopener">Davicjc</a> — Veja o footer funcionando no canto da tela →</p>
     </footer>
 
-    <!-- Carregando o footer -->
+    <!-- Seta apontando para o footer arrastável -->
+    <div class="arrow-indicator" id="arrow">↓</div>
+
+    <!-- Footer arrastável -->
     <script src="footer_cjc.js"></script>
+    <script>
+        (function() {
+            const arrow = document.getElementById('arrow');
+            
+            function updateArrow() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+
+                if (scrollPercent > 0.85) {
+                    // Perto do fim: aponta pro footer no canto
+                    arrow.textContent = '↘';
+                    arrow.style.bottom = '55px';
+                    arrow.style.right = '55px';
+                    arrow.style.fontSize = '2.2rem';
+                } else {
+                    // No topo/meio: aponta pra baixo
+                    arrow.textContent = '↓';
+                    arrow.style.bottom = '30px';
+                    arrow.style.right = '50%';
+                    arrow.style.transform = 'translateX(50%)';
+                    arrow.style.fontSize = '2rem';
+                }
+
+                // Reset transform quando no fim
+                if (scrollPercent > 0.85) {
+                    arrow.style.transform = 'none';
+                }
+            }
+
+            window.addEventListener('scroll', updateArrow);
+            updateArrow();
+        })();
+    </script>
 </body>
 </html>
