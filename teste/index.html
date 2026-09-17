@@ -100,6 +100,7 @@
         <h2>Como os footers funcionam</h2>
         <ul class="changes">
             <li><strong>Card ao clicar:</strong> em vez de ir direto para o portfólio, abre um card "marca do desenvolvedor" perguntando se quer visitar. Na parceria aparecem os dois portfólios, davicjc primeiro. Fecha clicando fora, com Esc ou ao escolher.</li>
+            <li><strong>Minimizar:</strong> o "&gt;" no começo do selo transforma o selo numa bolinha com uma pena de caneta tinteiro (como o emoji ✒, em preto e branco). Clicando na bolinha, o selo volta. Vale só para a página aberta, nada é gravado no navegador.</li>
             <li><strong>Sem arrastar:</strong> o footer fica parado no canto inferior direito, no fim da página, como antes.</li>
             <li><strong>Visual mono:</strong> fonte de código, tudo minúsculo, borda fina e seta ↗. Na parceria, um traço separa o "by" e uma linha fina separa os dois nomes.</li>
             <li><strong>Se ajusta ao fundo:</strong> caixa clara em site claro (inclusive gradientes), escura em site escuro e mais escura sobre fotos, para continuar legível.</li>
@@ -122,7 +123,7 @@
 
 <script>
     const VERSOES = [
-        { nome: 'Novo', detalhe: 'By Davicjc', src: '../projetos/footer-davi/footer.js', novo: true },
+        { nome: 'Novo', detalhe: 'By Davicjc', src: '../projetos/footer-davi/footer_davicjc.js', novo: true },
         { nome: 'Novo', detalhe: 'Davicjc / PauloG', src: '../projetos/footer-terceiros/paulog.js', novo: true }
     ];
 
@@ -239,7 +240,7 @@
         document.querySelectorAll('iframe').forEach((iframe) => {
             const doc = iframe.contentDocument;
             const host = doc && doc.querySelector('[id^="davicjc-"][id$="footer"]');
-            const badge = host && host.shadowRoot && host.shadowRoot.querySelector('.badge');
+            const badge = host && host.shadowRoot && host.shadowRoot.querySelector('.abrir');
             if (badge && badge.getAttribute('aria-expanded') !== 'true') badge.click();
         });
     }

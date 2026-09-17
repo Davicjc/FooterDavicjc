@@ -13,7 +13,7 @@ Nada nesta lista entra em script ou página publicada, nem "só para testar".
 
 - **Ofuscação:** nada de código ofuscado, embaralhado ou em base64 para esconder o que faz. Código legível é proteção.
 - **Execução de texto como código:** proibido `eval`, `new Function`, `setTimeout`/`setInterval` com string e `document.write`.
-- **Código remoto:** não carregar código de outros domínios em tempo de execução (outros scripts, iframes de terceiros, WebAssembly desconhecido).
+- **Código remoto:** não carregar código de outros domínios em tempo de execução (outros scripts, iframes de terceiros, WebAssembly desconhecido). Única exceção: o `footer_cjc.js` legado carrega o próprio footer do Davi, de `recursos.cjc.pics` ou do jsDelivr deste repositório.
 - **Mineração:** nada de mineração de criptomoeda nem uso pesado de CPU em segundo plano.
 
 ## 2. Redirecionar ou prender o visitante
@@ -63,6 +63,7 @@ Nada nesta lista entra em script ou página publicada, nem "só para testar".
 
 - Mostrar o crédito de quem fez o site, discreto, isolado em Shadow DOM.
 - Ler a cor de fundo **localmente** para escolher o tema, sem enviar nada para fora.
+- Contar carregamentos **no servidor** (`functions/`), a partir do pedido que o navegador já faz: só domínio do site, arquivo e data/hora. O script em si continua sem enviar nada.
 - Links que só abrem com clique do visitante, em nova aba, com `rel="noopener"`.
 - JavaScript puro, sem dependências, legível e pequeno.
 

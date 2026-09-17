@@ -50,7 +50,7 @@ layers.forEach((v) => v.addEventListener('timeupdate', onTime));
 const verSelo = document.getElementById('ver-selo');
 addEventListener('load', () => {
   const host = document.getElementById('davicjc-footer');
-  const badge = host && host.shadowRoot && host.shadowRoot.querySelector('.badge');
+  const badge = host && host.shadowRoot && host.shadowRoot.querySelector('.abrir');
   if (!badge) {
     verSelo.hidden = true;
     return;

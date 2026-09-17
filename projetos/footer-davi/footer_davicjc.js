@@ -10,6 +10,14 @@
     const THEME_ATTR = 'data-davicjc-theme';
     const Z_CLOSED = '9999';
     const Z_OPEN = '2147483647';
+    // Pena de caneta tinteiro, como o emoji ✒ em preto e branco (ícone da bolinha minimizada).
+    // Desenhada em SVG para ficar igual em todo aparelho e seguir a cor do tema.
+    const ICON_ASSINATURA = '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        '<path fill="currentColor" fill-rule="evenodd" transform="rotate(45 12 12)" d="' +
+        'M8 2.5h8l3 7.5-7 12-7-12z' +
+        'M7.2 6.2h9.6v1.1H7.2z' +
+        'M12 10.3a1.7 1.7 0 1 0 0 3.4a1.7 1.7 0 1 0 0-3.4z' +
+        'M11.45 13.5h1.1V22h-1.1z"/></svg>';
     const ARROW = '\u2197';
     const MEDIA_TAGS = /^(img|video|canvas|iframe|svg|picture|object|embed)$/i;
     const COLOR_FUNCTIONS = /(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\([^()]*\)/g;
@@ -45,12 +53,11 @@
         }
 
         .badge {
-            all: unset;
             box-sizing: border-box;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             gap: 5px;
-            padding: 2px 6px;
+            padding: 2px 6px 2px 3px;
             border: 1px solid var(--dvc-badge-border);
             border-radius: 3px;
             background: var(--dvc-badge-bg);
@@ -58,11 +65,38 @@
             font-size: 8.5px;
             line-height: 1.25;
             white-space: nowrap;
+        }
+        /* ">" minimiza o selo; o resto ("by" e nomes) abre o card.
+           A caixinha em volta dele mostra que é um botão separado. */
+        .prompt {
+            all: unset;
+            box-sizing: border-box;
+            align-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 11px;
+            height: 11px;
+            border: 1px solid var(--dvc-badge-border);
+            border-radius: 2px;
+            background: var(--dvc-hover);
+            line-height: 1;
+            cursor: pointer;
+            transition: border-color 0.15s ease;
+        }
+        .prompt span { opacity: 0.6; transition: opacity 0.15s ease; }
+        .prompt:hover { border-color: currentColor; }
+        .prompt:hover span { opacity: 1; }
+        .abrir {
+            all: unset;
+            display: flex;
+            align-items: center;
+            gap: 5px;
             cursor: pointer;
         }
         .by, .arrow { opacity: 0.5; }
         .name { opacity: 0.85; transition: opacity 0.15s ease; }
-        .badge:hover .name, .open .name { opacity: 1; }
+        .abrir:hover .name, .open .name { opacity: 1; }
         .rule { align-self: stretch; width: 1px; background: currentColor; opacity: 0.2; }
         .names { display: flex; flex-direction: column; }
         .sep { height: 1px; margin: 2px 0; background: currentColor; opacity: 0.25; }
@@ -94,6 +128,28 @@
             transition: opacity 0.14s ease, transform 0.14s ease;
         }
         .eyebrow { margin: 0 0 4px; opacity: 0.5; }
+
+        /* Minimizado: o selo vira uma bolinha com a pena de caneta */
+        .mini {
+            all: unset;
+            box-sizing: border-box;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border: 1px solid var(--dvc-badge-border);
+            border-radius: 50%;
+            background: var(--dvc-badge-bg);
+            color: var(--dvc-badge-fg);
+            cursor: pointer;
+        }
+        .mini svg { width: 13px; height: 13px; opacity: 0.8; transition: opacity 0.15s ease; }
+        .mini:hover svg { opacity: 1; }
+        .collapsed .badge { display: none; }
+        .collapsed .mini { display: inline-flex; }
+        .anima .badge, .anima .mini { animation: dvc-surgir 0.16s ease; }
+        @keyframes dvc-surgir { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: none; } }
         .text { margin: 0 0 10px; }
         .text strong { font-weight: 600; }
         .actions { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -109,9 +165,10 @@
             transition: background-color 0.15s ease;
         }
         .action:hover { background: var(--dvc-hover); }
-        .badge:focus-visible, .action:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+        .prompt:focus-visible, .abrir:focus-visible, .action:focus-visible, .mini:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
         @media (prefers-reduced-motion: reduce) {
             .card, .open .card { transition: none; }
+            .anima .badge, .anima .mini { animation: none; }
         }
     `;
 
@@ -131,7 +188,8 @@
             '<span class="arrow" aria-hidden="true">' + ARROW + '</span></a>'
         ).join('');
 
-        // Um nome: "by davicjc ↗". Vários: traço vertical e nomes empilhados com linha fina entre eles, sem seta
+        // Selo começa com ">" (estilo terminal), que é o botão de minimizar. Um nome: "> by davicjc".
+        // Vários: "> by", traço vertical e nomes empilhados com linha fina entre eles
         const label = several
             ? '<span class="rule"></span><span class="names">' +
                 names.map((name) => '<span class="name">' + name + '</span>').join('<span class="sep"></span>') +
@@ -144,10 +202,13 @@
             '<p class="text">Este site foi desenvolvido por ' + credits + '. ' + question + '</p>' +
             '<div class="actions">' + actions + '</div>' +
             '</div>' +
-            '<button class="badge" type="button" aria-haspopup="dialog" aria-expanded="false">' +
+            '<div class="badge">' +
+            '<button class="prompt" type="button" aria-label="Minimizar assinatura" title="Minimizar"><span>&gt;</span></button>' +
+            '<button class="abrir" type="button" aria-haspopup="dialog" aria-expanded="false">' +
             '<span class="by">by</span>' + label +
-            (several ? '' : '<span class="arrow" aria-hidden="true">' + ARROW + '</span>') +
             '</button>' +
+            '</div>' +
+            '<button class="mini" type="button" aria-label="Mostrar assinatura do desenvolvedor" title="Assinatura do desenvolvedor">' + ICON_ASSINATURA + '</button>' +
             '</div>';
     }
 
@@ -172,12 +233,13 @@
         root.innerHTML = '<style>' + STYLES + '</style>' + template();
 
         const wrap = root.querySelector('.wrap');
-        const badge = root.querySelector('.badge');
+        const abrir = root.querySelector('.abrir');
         const firstAction = root.querySelector('.action');
+        const mini = root.querySelector('.mini');
 
         function setOpen(open) {
             wrap.classList.toggle('open', open);
-            badge.setAttribute('aria-expanded', String(open));
+            abrir.setAttribute('aria-expanded', String(open));
             // Aberto, o card fica acima de qualquer coisa do site (chat, cookies...)
             footer.style.zIndex = open ? Z_OPEN : Z_CLOSED;
 
@@ -198,10 +260,20 @@
         function onKeyDown(e) {
             if (e.key !== 'Escape') return;
             setOpen(false);
-            badge.focus({ preventScroll: true });
+            abrir.focus({ preventScroll: true });
         }
 
-        badge.addEventListener('click', () => setOpen(!wrap.classList.contains('open')));
+        // Minimizar vale só para esta página: nada é gravado no navegador do visitante
+        function setCollapsed(collapsed) {
+            setOpen(false);
+            wrap.classList.add('anima');
+            wrap.classList.toggle('collapsed', collapsed);
+            (collapsed ? mini : abrir).focus({ preventScroll: true });
+        }
+
+        abrir.addEventListener('click', () => setOpen(!wrap.classList.contains('open')));
+        root.querySelector('.prompt').addEventListener('click', () => setCollapsed(true));
+        mini.addEventListener('click', () => setCollapsed(false));
         root.querySelectorAll('.action').forEach((action) => {
             action.addEventListener('click', () => setOpen(false));
         });
