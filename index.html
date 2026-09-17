@@ -1,727 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H0SV5JCT0"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-8H0SV5JCT0');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Footer para Sites | Drag & Drop Footer JS - Davicjc</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Mini Footer discreto e profissional para qualquer site. Uma linha de código JavaScript, sem dependências. Drag & drop, responsivo e com auto-update via CDN.">
-    <meta name="keywords" content="mini footer, footer javascript, footer drag and drop, footer para sites, footer html css js, footer cdn, davicjc, footer responsivo, footer profissional, footer discreto">
-    <meta name="author" content="Davicjc">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://footer.davicjc.com/">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://footer.davicjc.com/">
-    <meta property="og:title" content="Mini Footer para Sites | Davicjc">
-    <meta property="og:description" content="Adicione um mini footer discreto e arrastável em qualquer site com apenas uma linha de código. Open source, sem dependências, auto-update via CDN.">
-    <meta property="og:image" content="https://footer.davicjc.com/og-image.png">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:site_name" content="Mini Footer - Davicjc">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://footer.davicjc.com/">
-    <meta name="twitter:title" content="Mini Footer para Sites | Davicjc">
-    <meta name="twitter:description" content="Mini Footer discreto e arrastável com uma linha de código. Open source, zero dependências, auto-update via CDN.">
-    <meta name="twitter:image" content="https://footer.davicjc.com/og-image.png">
-
-    <!-- Tema / Favicon -->
-    <meta name="theme-color" content="#667eea">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦶</text></svg>">
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        "name": "Mini Footer",
-        "description": "Footer discreto e arrastável para sites, implementável com uma linha de código JavaScript via CDN.",
-        "author": {
-            "@type": "Person",
-            "name": "Davicjc",
-            "url": "https://davicjc.github.io/PortfolioPessoal"
-        },
-        "url": "https://footer.davicjc.com/",
-        "codeRepository": "https://github.com/davicjc/FooterDavicjc",
-        "programmingLanguage": "JavaScript",
-        "license": "https://opensource.org/licenses/MIT",
-        "operatingSystem": "Any",
-        "runtimePlatform": "Browser"
-    }
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #e2e8f0;
-            background: #0f172a;
-            overflow-x: hidden;
-        }
-
-        /* ── Hero ── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            position: relative;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(102,126,234,.25) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(118,75,162,.25) 0%, transparent 50%),
-                #0f172a;
-        }
-
-        .hero-content { max-width: 650px; z-index: 2; position: relative; }
-
-        .badge {
-            display: inline-block;
-            background: rgba(102,126,234,.15);
-            border: 1px solid rgba(102,126,234,.3);
-            color: #a5b4fc;
-            padding: 6px 18px;
-            border-radius: 99px;
-            font-size: .85rem;
-            font-weight: 500;
-            margin-bottom: 30px;
-            animation: fadeIn .8s ease .1s both;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeIn .8s ease .2s both;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #94a3b8;
-            font-weight: 300;
-            line-height: 1.7;
-            margin-bottom: 40px;
-            animation: fadeIn .8s ease .35s both;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform .2s, box-shadow .2s;
-            box-shadow: 0 4px 20px rgba(102,126,234,.4);
-            animation: fadeIn .8s ease .5s both;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(102,126,234,.5);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ── Features ── */
-        .features {
-            padding: 100px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .feat {
-            background: rgba(30,41,59,.6);
-            border: 1px solid rgba(148,163,184,.1);
-            border-radius: 16px;
-            padding: 36px 28px;
-            transition: all .3s ease;
-        }
-
-        .feat:hover {
-            border-color: rgba(102,126,234,.4);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(102,126,234,.1);
-        }
-
-        .feat-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .feat h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #f1f5f9;
-            margin-bottom: 10px;
-        }
-
-        .feat p {
-            color: #94a3b8;
-            line-height: 1.65;
-            font-size: .95rem;
-        }
-
-        /* ── Code Section ── */
-        .code-section {
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .code-section h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 12px;
-        }
-
-        .code-section > p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-
-        .code-box {
-            background: #1e293b;
-            border: 1px solid rgba(148,163,184,.15);
-            border-radius: 14px;
-            max-width: 650px;
-            margin: 0 auto;
-            text-align: left;
-            overflow: hidden;
-        }
-
-        .code-bar {
-            background: rgba(15,23,42,.6);
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(148,163,184,.1);
-        }
-
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-r { background: #ef4444; }
-        .dot-y { background: #eab308; }
-        .dot-g { background: #22c55e; }
-
-        .code-bar span {
-            margin-left: auto;
-            color: #64748b;
-            font-size: .8rem;
-            font-weight: 500;
-        }
-
-        .code-body {
-            padding: 24px;
-            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-            font-size: .9rem;
-            color: #e2e8f0;
-            line-height: 1.7;
-            overflow-x: auto;
-        }
-
-        .code-body .comment { color: #64748b; }
-        .code-body .tag { color: #7dd3fc; }
-        .code-body .attr { color: #a5b4fc; }
-        .code-body .str { color: #86efac; }
-
-        .code-copy {
-            display: inline-block;
-            margin-top: 24px;
-            color: #a5b4fc;
-            font-size: .9rem;
-            font-weight: 500;
-        }
-
-        /* ── Mini stats ── */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            padding: 60px 20px;
-            flex-wrap: wrap;
-        }
-
-        .stat { text-align: center; }
-
-        .stat-num {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            color: #64748b;
-            font-size: .9rem;
-            margin-top: 4px;
-        }
-
-        /* ── Text Sections ── */
-        .text-section {
-            padding: 80px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .text-section h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 16px;
-        }
-
-        .text-section .subtitle {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        .scenario {
-            background: rgba(30,41,59,.6);
-            border: 1px solid rgba(148,163,184,.1);
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 24px;
-        }
-
-        .scenario h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #f1f5f9;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .scenario p {
-            color: #94a3b8;
-            line-height: 1.7;
-            font-size: .95rem;
-        }
-
-        .scenario p + p {
-            margin-top: 10px;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(102,126,234,.15), rgba(118,75,162,.15));
-            border: 1px solid rgba(102,126,234,.3);
-            border-radius: 14px;
-            padding: 28px 32px;
-            margin: 30px 0;
-        }
-
-        .highlight-box p {
-            color: #c7d2fe;
-            line-height: 1.7;
-            font-size: .95rem;
-        }
-
-        .highlight-box strong {
-            color: #a5b4fc;
-        }
-
-        .diagram {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        .diagram-box {
-            background: rgba(30,41,59,.8);
-            border: 1px solid rgba(148,163,184,.15);
-            border-radius: 12px;
-            padding: 18px 22px;
-            text-align: center;
-            min-width: 100px;
-        }
-
-        .diagram-box .icon { font-size: 1.5rem; margin-bottom: 6px; display: block; }
-        .diagram-box .label { color: #94a3b8; font-size: .8rem; }
-        .diagram-arrow { color: #667eea; font-size: 1.5rem; font-weight: 700; }
-
-        .steps {
-            counter-reset: step;
-            list-style: none;
-            padding: 0;
-        }
-
-        .steps li {
-            counter-increment: step;
-            background: rgba(30,41,59,.6);
-            border: 1px solid rgba(148,163,184,.1);
-            border-radius: 14px;
-            padding: 28px 28px 28px 80px;
-            margin-bottom: 16px;
-            position: relative;
-            transition: all .3s ease;
-        }
-
-        .steps li:hover {
-            border-color: rgba(102,126,234,.3);
-            transform: translateX(4px);
-        }
-
-        .steps li::before {
-            content: counter(step);
-            position: absolute;
-            left: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            color: white;
-        }
-
-        .steps li h4 {
-            color: #f1f5f9;
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .steps li p {
-            color: #94a3b8;
-            font-size: .9rem;
-            line-height: 1.6;
-        }
-
-        .mini-code {
-            background: #1e293b;
-            border: 1px solid rgba(148,163,184,.12);
-            border-radius: 10px;
-            padding: 16px 20px;
-            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-            font-size: .85rem;
-            color: #e2e8f0;
-            margin-top: 12px;
-            overflow-x: auto;
-            line-height: 1.6;
-        }
-
-        .divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 3px;
-            margin: 0 auto;
-        }
-
-        /* ── Footer ── */
-        .site-footer {
-            border-top: 1px solid rgba(148,163,184,.1);
-            padding: 40px 20px;
-            text-align: center;
-            color: #64748b;
-            font-size: .9rem;
-        }
-
-        .site-footer a {
-            color: #a5b4fc;
-            text-decoration: none;
-        }
-
-        .site-footer a:hover { text-decoration: underline; }
-
-        /* ── Arrow ── */
-        .arrow-indicator {
-            position: fixed;
-            bottom: 30px;
-            right: 50%;
-            transform: translateX(50%);
-            font-size: 2rem;
-            color: #fbbf24;
-            animation: bounce 2s infinite;
-            z-index: 1000;
-            pointer-events: none;
-            filter: drop-shadow(0 0 10px rgba(251,191,36,.6));
-            transition: right .4s ease, bottom .4s ease, font-size .3s ease;
-        }
-
-        @keyframes bounce {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 640px) {
-            .features { padding: 60px 16px; }
-            .code-section { padding: 60px 16px; }
-            .stats { gap: 40px; }
-            .stat-num { font-size: 2rem; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0e0d" />
+<title>FOOTER.DAVICJC · Assinatura dos sites</title>
+<meta name="description" content="Este endereço entrega o selo de assinatura que aparece no canto dos sites desenvolvidos pelo davicjc. O script não coleta dados e não usa cookies. Site principal: davicjc.com" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FOOTER.DAVICJC · Assinatura dos sites" />
+<meta property="og:description" content="O endereço que entrega o selo de assinatura dos sites desenvolvidos pelo davicjc." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/index.css" />
 </head>
 <body>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <span class="badge">Open Source &bull; Vanilla JS</span>
-            <h1>Mini Footer</h1>
-            <p>Uma linha de código para adicionar um footer discreto, arrastável e profissional em qualquer site.</p>
-            <a href="https://github.com/davicjc/FooterDavicjc" target="_blank" rel="noopener" class="hero-cta">
-                ⭐ Ver no GitHub
-            </a>
+  <!-- Dois vídeos sobrepostos para o loop com crossfade (sem piscar no preto) -->
+  <div class="bg" aria-hidden="true">
+    <video id="vidA" class="show" autoplay muted playsinline preload="auto">
+      <source src="assets/fundo.mp4" type="video/mp4" />
+    </video>
+    <video id="vidB" muted playsinline preload="auto">
+      <source src="assets/fundo.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="grade"></div>
+  <div class="vignette"></div>
+  <div class="glow"></div>
+  <div class="grain"></div>
+
+  <div class="shell">
+
+    <header class="top">
+      <div class="brand">
+        <span class="dot"></span>
+        FOOTER<span style="opacity:.5">.</span>DAVICJC
+        <small>assinatura</small>
+      </div>
+      <div class="status">
+        <span class="pulse"></span>
+        <span class="txt">Script</span> <b>Ativo</b><span class="txt"> · sem rastreio</span>
+      </div>
+    </header>
+
+    <main class="center">
+      <span class="eyebrow">Assinatura de desenvolvedor</span>
+
+      <h1>Você encontrou a <em>assinatura</em> de um site.</h1>
+
+      <p class="lead">
+        Este endereço entrega o pequeno selo <code>by davicjc</code> que aparece no canto dos
+        sites desenvolvidos pelo <strong>davicjc</strong> e parceiros. Se você chegou aqui,
+        provavelmente viu <strong class="js-host">este endereço</strong> no código de um desses sites.
+      </p>
+
+      <div class="addr">
+        <div class="box">
+          <span class="proto">https://</span><span class="host js-host">recursos.cjc.pics</span><wbr><span class="file">/projetos/footer-davi/footer.js</span>
         </div>
-    </section>
+        <p class="hint">O script só mostra o crédito de quem fez o site. <b>Não coleta dados, não usa cookies e não envia nada de volta.</b></p>
+      </div>
 
-    <!-- Features -->
-    <section class="features">
-        <div class="features-grid">
-            <div class="feat">
-                <span class="feat-icon">🖱️</span>
-                <h3>Drag & Drop</h3>
-                <p>Usuários podem arrastar e reposicionar livremente. Suporte completo a mouse e touch.</p>
-            </div>
-            <div class="feat">
-                <span class="feat-icon">🎯</span>
-                <h3>Discreto</h3>
-                <p>Aparece sutil no canto da tela, sem interferir no layout ou na experiência do usuário.</p>
-            </div>
-            <div class="feat">
-                <span class="feat-icon">⚡</span>
-                <h3>Zero Config</h3>
-                <p>Uma tag script e pronto. Sem dependências, sem build, sem configuração.</p>
-            </div>
-            <div class="feat">
-                <span class="feat-icon">📱</span>
-                <h3>Responsivo</h3>
-                <p>Funciona perfeitamente em qualquer dispositivo — desktop, tablet ou smartphone.</p>
-            </div>
-            <div class="feat">
-                <span class="feat-icon">🪶</span>
-                <h3>Ultra Leve</h3>
-                <p>Apenas 4KB. Nenhum impacto na performance do seu site.</p>
-            </div>
-            <div class="feat">
-                <span class="feat-icon">🔄</span>
-                <h3>Auto Update</h3>
-                <p>Via CDN, atualizações chegam automaticamente sem você alterar nada.</p>
-            </div>
-        </div>
-    </section>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://davicjc.com">
+          <span><span class="long">Acessar </span>davicjc.com</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <button class="btn btn-ghost" type="button" id="ver-selo">Ver o selo</button>
+      </div>
+    </main>
 
-    <!-- Para que serve -->
-    <div class="divider"></div>
-    <section class="text-section">
-        <h2>Para que serve?</h2>
-        <p class="subtitle">Imagine que você é um desenvolvedor freelancer. Você cria sites para diversos clientes — lojas, portfólios, landing pages. Em todos eles, você quer deixar sua marca de forma discreta.</p>
-
-        <div class="scenario">
-            <h3>💼 O problema</h3>
-            <p>Você criou 20 sites diferentes para clientes. Em cada um, colocou manualmente um footer com seu nome e link. Agora precisa mudar o link do portfólio em todos eles.</p>
-            <p><strong style="color:#f87171;">Resultado:</strong> Abrir 20 projetos, editar 20 arquivos, fazer 20 deploys. Horas de trabalho repetitivo.</p>
-        </div>
-
-        <div class="scenario">
-            <h3>✅ A solução</h3>
-            <p>Com o Mini Footer via CDN, todos os seus sites puxam o mesmo arquivo do GitHub. Quando você atualiza o código <strong style="color:#86efac;">uma única vez</strong> no repositório, <strong style="color:#86efac;">todos os sites</strong> que usam o CDN recebem a mudança automaticamente.</p>
-            <p>Mudou de portfólio? Quer trocar a cor? Altere no GitHub e pronto — 20 sites atualizados em segundos.</p>
-        </div>
-
-        <div class="diagram">
-            <div class="diagram-box">
-                <span class="icon">📝</span>
-                <span class="label">Você edita<br>no GitHub</span>
-            </div>
-            <span class="diagram-arrow">→</span>
-            <div class="diagram-box">
-                <span class="icon">☁️</span>
-                <span class="label">CDN atualiza<br>automaticamente</span>
-            </div>
-            <span class="diagram-arrow">→</span>
-            <div class="diagram-box">
-                <span class="icon">🌐</span>
-                <span class="label">Todos os sites<br>recebem a mudança</span>
-            </div>
-        </div>
-
-        <div class="highlight-box">
-            <p><strong>💡 Na prática:</strong> O footer serve como sua assinatura digital. Ele diz "este site foi feito por mim" de forma elegante, sem estragar o design do cliente. E o melhor — você tem controle centralizado de todos eles a partir de um único repositório.</p>
-        </div>
-    </section>
-
-    <!-- Como criar o seu -->
-    <div class="divider"></div>
-    <section class="text-section">
-        <h2>Como criar o seu</h2>
-        <p class="subtitle">Você tem duas opções: usar o meu footer direto ou criar seu próprio projeto baseado neste. Veja como:</p>
-
-        <div class="scenario">
-            <h3>🚀 Opção 1 — Usar o meu footer</h3>
-            <p>A forma mais rápida. Adicione uma tag script com o link do CDN e meu footer aparece automaticamente em seu site. Ideal se você quer usar direto sem modificar nada.</p>
-            <div class="mini-code">&lt;script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js"&gt;&lt;/script&gt;</div>
-        </div>
-
-        <div class="scenario">
-            <h3>🔧 Opção 2 — Criar seu próprio footer baseado neste</h3>
-            <p>Quer personalizar com seu nome, link e estilo? Faça um fork do projeto e crie sua versão:</p>
-        </div>
-
-        <ol class="steps">
-            <li>
-                <h4>Fork do repositório</h4>
-                <p>Acesse <a href="https://github.com/davicjc/FooterDavicjc" target="_blank" rel="noopener" style="color:#a5b4fc;">github.com/davicjc/FooterDavicjc</a> e clique em <strong style="color:#f1f5f9;">Fork</strong> para copiar o projeto para sua conta.</p>
-            </li>
-            <li>
-                <h4>Edite o footer_cjc.js</h4>
-                <p>Mude o texto, link e estilos no arquivo principal. Troque "By Davicjc" pelo seu nome e o link para seu portfólio.</p>
-                <div class="mini-code">footer.innerHTML = '&lt;a href="SEU-LINK" target="_blank"&gt;By SeuNome&lt;/a&gt;';</div>
-            </li>
-            <li>
-                <h4>Personalize o visual</h4>
-                <p>Ajuste cores, tamanho, opacidade e posição editando os estilos do objeto <code style="color:#a5b4fc; background:rgba(30,41,59,.8); padding:2px 6px; border-radius:4px;">Object.assign(footer.style, { ... })</code>.</p>
-            </li>
-            <li>
-                <h4>Faça push para seu repositório</h4>
-                <p>Envie as mudanças para o GitHub. Agora você tem seu próprio CDN personalizado.</p>
-            </li>
-            <li>
-                <h4>Use seu CDN em todos os sites</h4>
-                <p>Troque o link do CDN para apontar para seu repositório:</p>
-                <div class="mini-code">&lt;script src="https://cdn.jsdelivr.net/gh/<strong style="color:#86efac;">SEU-USER</strong>/<strong style="color:#86efac;">SEU-REPO</strong>@main/footer_cjc.js"&gt;&lt;/script&gt;</div>
-            </li>
-        </ol>
-
-        <div class="highlight-box">
-            <p><strong>🎯 Resultado final:</strong> Você terá um footer 100% seu, hospedado no seu GitHub, servido via CDN rápido, que pode ser atualizado de um lugar só e que aparece em todos os sites que você quiser. Controle total com esforço mínimo.</p>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <div class="divider"></div>
-    <div class="stats">
-        <div class="stat">
-            <div class="stat-num">1</div>
-            <div class="stat-label">linha de código</div>
-        </div>
-        <div class="stat">
-            <div class="stat-num">4KB</div>
-            <div class="stat-label">tamanho total</div>
-        </div>
-        <div class="stat">
-            <div class="stat-num">0</div>
-            <div class="stat-label">dependências</div>
-        </div>
-    </div>
-
-    <!-- Code -->
-    <section class="code-section">
-        <h2>Implemente em segundos</h2>
-        <p>Cole antes de fechar o &lt;/body&gt; e pronto.</p>
-
-        <div class="code-box">
-            <div class="code-bar">
-                <div class="dot dot-r"></div>
-                <div class="dot dot-y"></div>
-                <div class="dot dot-g"></div>
-                <span>index.html</span>
-            </div>
-            <div class="code-body">
-<span class="comment">&lt;!-- Footer arrastável do Davicjc --&gt;</span>
-<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-            </div>
-        </div>
-
-        <p class="code-copy">✅ CDN rápido &nbsp;&bull;&nbsp; ✅ Sempre atualizado &nbsp;&bull;&nbsp; ✅ Cross-browser</p>
-    </section>
-
-    <!-- Footer do site -->
-    <footer class="site-footer">
-        <p>&copy; 2026 <a href="https://davicjc.github.io/PortfolioPessoal" target="_blank" rel="noopener">Davicjc</a> — Veja o footer funcionando no canto da tela →</p>
+    <footer class="foot">
+      <div class="credits">
+        <span>© <span id="ano">2026</span> davicjc. Todos os direitos reservados.</span>
+        <span>
+          <span class="sep">·</span>
+          Site principal: <a href="https://davicjc.com">davicjc.com</a>
+          <span class="sep"> · </span>
+          Contato: <a href="mailto:contato@davicjc.com">contato@davicjc.com</a>
+        </span>
+        <span>
+          <span class="sep">·</span>
+          <a class="discreto" href="projetos.html">projetos</a>
+        </span>
+      </div>
+      <div class="pointer" aria-hidden="true">
+        <span class="label">o selo é este aqui</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5c7 0 12 5 12 12"/><path d="M12.5 14.5 17 19l4.5-4.5"/></svg>
+      </div>
     </footer>
 
-    <!-- Seta apontando para o footer arrastável -->
-    <div class="arrow-indicator" id="arrow">↓</div>
+  </div>
 
-    <!-- Footer arrastável -->
-    <script src="footer_cjc.js"></script>
-    <script>
-        (function() {
-            const arrow = document.getElementById('arrow');
-            
-            function updateArrow() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
-
-                if (scrollPercent > 0.85) {
-                    // Perto do fim: aponta pro footer no canto
-                    arrow.textContent = '↘';
-                    arrow.style.bottom = '55px';
-                    arrow.style.right = '55px';
-                    arrow.style.fontSize = '2.2rem';
-                } else {
-                    // No topo/meio: aponta pra baixo
-                    arrow.textContent = '↓';
-                    arrow.style.bottom = '30px';
-                    arrow.style.right = '50%';
-                    arrow.style.transform = 'translateX(50%)';
-                    arrow.style.fontSize = '2rem';
-                }
-
-                // Reset transform quando no fim
-                if (scrollPercent > 0.85) {
-                    arrow.style.transform = 'none';
-                }
-            }
-
-            window.addEventListener('scroll', updateArrow);
-            updateArrow();
-        })();
-    </script>
+  <!-- O próprio selo, servido por este endereço -->
+  <script src="footer_cjc.js" defer></script>
+  <script src="assets/index.js" defer></script>
 </body>
 </html>

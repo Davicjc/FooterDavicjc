@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0e0d" />
+<meta name="robots" content="noindex" />
+<title>Projetos · recursos.cjc.pics</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/projetos.css" />
+</head>
+<body>
+
+  <div class="glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <header class="top">
+      <a class="brand" href="./">
+        <span class="dot"></span>
+        RECURSOS<span class="faint">.</span>CJC<span class="faint">.</span>PICS
+        <small>projetos</small>
+      </a>
+      <div class="status" role="status" aria-live="polite">
+        <span class="pulse"></span>
+        <span id="status-texto">carregando</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <span class="eyebrow">Links prontos</span>
+        <h1>Tudo que pode ir <em>nos sites</em>.</h1>
+        <p class="lead">
+          Cada arquivo da pasta <code>projetos/</code> aparece aqui com o link e a tag HTML pronta.
+          É só copiar e colar. A lista se atualiza sozinha depois de cada push.
+        </p>
+      </section>
+
+      <div id="lista" class="lista"></div>
+    </main>
+
+    <footer class="foot">
+      <span>© <span id="ano">2026</span> davicjc</span>
+      <span class="foot-info">Lista lida do GitHub: <code>davicjc/FooterDavicjc</code> · branch <code>main</code> · arquivos com <code>_</code> no início ficam ocultos</span>
+    </footer>
+
+  </div>
+
+  <!-- Popup com o exemplo funcionando de cada arquivo -->
+  <dialog id="exemplo" class="modal" aria-labelledby="exemplo-titulo">
+    <div class="modal-caixa">
+      <div class="modal-topo">
+        <div class="modal-titulo">
+          <span id="exemplo-titulo" class="nome"></span>
+          <span id="exemplo-tipo" class="tipo"></span>
+        </div>
+        <div id="exemplo-fundos" class="modal-fundos" role="group" aria-label="Fundo do site de exemplo">
+          <button type="button" data-fundo="escuro" aria-pressed="true">Escuro</button>
+          <button type="button" data-fundo="claro" aria-pressed="false">Claro</button>
+          <button type="button" data-fundo="foto" aria-pressed="false">Foto</button>
+        </div>
+        <button type="button" id="exemplo-fechar" class="modal-fechar" aria-label="Fechar">&times;</button>
+      </div>
+      <div id="exemplo-palco" class="modal-palco"></div>
+      <p id="exemplo-dica" class="modal-dica"></p>
+    </div>
+  </dialog>
+
+  <script src="assets/projetos.js" defer></script>
+</body>
+</html>

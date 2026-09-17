@@ -1,6 +1,3 @@
-// footer legado do site davicjc.com, que mostra o crédito de quem fez o site. Não coleta dados, não usa cookies e não envia nada de volta.
-// utilziar apenas os novos com o novo dominio da pasta projetos
-
 (function() {
     'use strict';
 

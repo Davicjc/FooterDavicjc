@@ -1,13 +1,12 @@
-// footer legado do site davicjc.com, que mostra o crédito de quem fez o site. Não coleta dados, não usa cookies e não envia nada de volta.
-// utilziar apenas os novos com o novo dominio da pasta projetos
-
 (function() {
     'use strict';
 
     // Único trecho que muda entre os arquivos de footer
-    const FOOTER_ID = 'davicjc-footer';
+    const FOOTER_ID = 'davicjc-paulog-footer';
+    // Gerado por projetos/footer-terceiros/_gerar.js. Não edite à mão.
     const DEVELOPERS = [
-        { name: 'Davicjc', url: 'https://davicjc.github.io/PortfolioPessoal' }
+        { name: 'Davicjc', url: 'https://davicjc.github.io/PortfolioPessoal' },
+        { name: 'PauloG', url: 'https://www.paulogfribeiro.lat/' }
     ];
 
     const THEME_ATTR = 'data-davicjc-theme';

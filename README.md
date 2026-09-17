@@ -1,158 +1,50 @@
-# 🦶 Footer Arrastável - Tutorial e Demonstração
+# FooterDavicjc
 
-**Tutorial interativo** sobre como criar e implementar footers discretos e funcionais para sites. Este projeto inclui tanto a **demonstração prática** quanto o **código completo** para você aprender e utilizar.
+Scripts e arquivos do **davicjc** para os sites dos clientes, servidos em https://recursos.cjc.pics/ (Cloudflare Pages). Hoje: o footer de assinatura, que mostra `by davicjc` no canto do site e, ao clicar, abre um card com o portfólio.
 
-## 🎯 O que você vai aprender
+## Estrutura
 
-Este tutorial te ensina:
-- **Por que ter** um footer em seu site
-- **Para que serve** um footer arrastável  
-- **Como usar** em seus projetos
-- **Como criar** um footer igual a este
+| Caminho | O que é |
+|---|---|
+| `index.html` | Página inicial do domínio: explica o que é para quem o encontra no código de um site |
+| `projetos.html` | Lista automática de tudo em `projetos/`, com link e tag HTML prontos para copiar e um exemplo funcionando de cada arquivo |
+| `assets/` | Arquivos das páginas: `index.css`, `index.js`, `projetos.css`, `projetos.js`, `favicon.svg` e `fundo.mp4` |
+| `projetos/` | Uma subpasta por projeto. Arquivos e pastas com `_` no início são internos e não aparecem no `projetos.html` |
+| `projetos/footer-davi/footer.js` | Footer "by davicjc" |
+| `projetos/footer-terceiros/<parceiro>.js` | Footers de parceria (gerados, não editar à mão) |
+| `projetos/footer-terceiros/_gerar.js` | Cria os footers de parceria copiando o footer do Davi e trocando os nomes |
+| `teste/index.html` | Teste com sites simulados (claro, escuro, foto, CSS agressivo) |
+| `footer_cjc.js` | **Legado**: footer antigo usado por sites antigos via jsDelivr. Não apagar |
+| `rules.md` | O que nunca pode entrar nos scripts, para não manchar o domínio |
 
-## 🚀 Demonstração ao Vivo
+## Usar em um site
 
-[**👉 Ver Tutorial Interativo**](https://davicjc.github.io/FooterDavicjc)
-
-O site de demonstração mostra o footer em ação - você pode arrastar, reposicionar e entender como funciona na prática!
-
-## 📦 Como Usar Este Footer
-
-### ✅ Método 1: CDN do GitHub (Recomendado)
-
-Adicione esta única linha no seu HTML (antes de fechar `</body>`):
-
-```html
-<!-- Footer arrastável - sempre atualizado! -->
-<script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js"></script>
-```
-
-**Por que usar via CDN?**
-- ✅ **Auto-atualização**: Melhorias automáticas sem você precisar fazer nada
-- ✅ **Zero configuração**: Funciona imediatamente 
-- ✅ **Performance**: CDN rápido e confiável
-- ✅ **Sempre atual**: Sem versões desatualizadas
-
-### 📁 Método 2: Download Local
-
-1. Baixe o arquivo `footer_cjc.js` deste repositório
-2. Coloque no seu projeto  
-3. Adicione no HTML:
+A lista completa, com botão de copiar, fica em https://recursos.cjc.pics/projetos.html e se atualiza sozinha a cada push.
 
 ```html
-<script src="caminho/para/footer_cjc.js"></script>
+<!-- footer do davicjc -->
+<script src="https://recursos.cjc.pics/projetos/footer-davi/footer.js" defer></script>
+
+<!-- footer da parceria com o PauloG -->
+<script src="https://recursos.cjc.pics/projetos/footer-terceiros/paulog.js" defer></script>
 ```
 
-## ✨ Características do Footer
+## Alterar o footer
 
-- 📍 **Posição inteligente**: Aparece automaticamente no canto inferior direito
-- 🖱️ **Arrastável**: Usuários podem reposicionar clicando e arrastando  
-- 👆 **Touch support**: Funciona perfeitamente em smartphones e tablets
-- 🎨 **Discreto**: Design sutil que não interfere no conteúdo
-- 📱 **Responsivo**: Adapta-se a qualquer tamanho de tela
-- 🔗 **Link profissional**: Direciona para seu portfólio/site
-- ⚡ **Leve**: Apenas 4KB - não impacta a performance
-- 🔄 **Cross-browser**: Funciona em todos os navegadores modernos
+1. Editar `projetos/footer-davi/footer.js`.
+2. Rodar `node projetos/footer-terceiros/_gerar.js`. Ele recria os footers de parceria com a mesma mudança.
+3. Abrir `teste/index.html` no navegador e conferir.
+4. Revisar a lista do `rules.md` antes do push, porque o push publica em todos os sites.
 
-## 🎓 Por Que Ter Um Footer?
+**Novo parceiro:** adicionar em `PARCEIROS` no `_gerar.js` (Davicjc sempre primeiro) e rodar o passo 2. O arquivo sai em `projetos/footer-terceiros/<nome>.js`.
 
-Um footer profissional traz diversos benefícios:
+## Publicação (Cloudflare Pages)
 
-### 🏷️ **Branding e Credibilidade**
-- Mostra que você é um profissional sério
-- Mantém sua marca sempre visível
-- Gera reconhecimento e confiança
+- Projeto ligado a este repositório, branch `main`.
+- Framework: nenhum. Comando de build: vazio. Diretório de saída: raiz (deixe vazio ou `/`).
+- Domínio personalizado: `recursos.cjc.pics`.
+- Tudo no repositório fica acessível pelo domínio.
 
-### 📞 **Facilita Contato** 
-- Usuários sabem onde te encontrar
-- Link direto para seu portfólio
-- Melhora suas oportunidades de negócio
+## Sites antigos
 
-### ⚖️ **Profissionalismo**
-- Sites profissionais sempre têm footer
-- Espaço para direitos autorais
-- Demonstra atenção aos detalhes
-
-## 💡 Como Criar Seu Próprio Footer
-
-Quer criar uma versão personalizada? Siga estes passos:
-
-### 1. **Estrutura Básica**
-```javascript
-// Criar elemento
-const footer = document.createElement('div');
-footer.innerHTML = 'Seu texto aqui';
-document.body.appendChild(footer);
-```
-
-### 2. **Posicionamento**  
-```javascript
-// CSS via JavaScript
-footer.style.position = 'fixed'; // ou 'absolute'
-footer.style.bottom = '10px';
-footer.style.right = '10px';
-footer.style.zIndex = '9999';
-```
-
-### 3. **Funcionalidade Drag**
-```javascript
-// Event listeners para arrastar
-footer.addEventListener('mousedown', iniciarArrastre);
-document.addEventListener('mousemove', arrastar);  
-document.addEventListener('mouseup', pararArrastre);
-```
-
-### 4. **Responsividade Mobile**
-```javascript
-// Suporte a touch
-footer.addEventListener('touchstart', iniciarArrastre);
-footer.addEventListener('touchmove', arrastar);
-footer.addEventListener('touchend', pararArrastre);
-```
-
-## � Personalização
-
-Quer adaptar o footer? Você pode modificar:
-
-**Texto e Link:**
-- Mude o texto interno e URL de destino
-- Personalize a mensagem do seu footer
-
-**Estilos:**
-- Cor, tamanho da fonte, opacidade  
-- Posição inicial na tela
-- Efeitos de hover e transições
-
-**Comportamento:**
-- Desabilitar o recurso de arrastar
-- Alterar posição padrão
-- Modificar animações
-
-## 🔍 Especificações Técnicas
-
-- **Tamanho:** ~4KB minificado
-- **Compatibilidade:** IE11+, Chrome, Firefox, Safari, Edge
-- **Dependências:** Nenhuma (Vanilla JavaScript)
-- **Framework:** Não requer React, Vue, etc.
-- **Performance:** Nenhum impacto mensurável
-
-## 🌐 Sobre o Link do Footer
-
-- **Destino**: [Portfólio do Davicjc](https://davicjc.github.io/PortfolioPessoal)
-- **Abertura**: Nova aba (`target="_blank"`)
-- **Segurança**: Link seguro (`rel="noopener"`)  
-- **Hover**: Efeito visual ao passar o mouse
-
----
-
-## 🤝 Contribuições
-
-Encontrou um bug? Tem uma sugestão? Abra uma [issue](../../issues) ou envie um [pull request](../../pulls)!
-
-## 📜 Licença
-
-Este projeto está sob licença MIT. Você pode usar, modificar e distribuir livremente.
-
----
-
-**🚀 Criado por Davicjc** | [Visite meu portfólio](https://davicjc.github.io/PortfolioPessoal) | [Mais projetos no GitHub](https://github.com/davicjc)
+Sites antigos usam `cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js`, que lê o `footer_cjc.js` da raiz deste repositório. O arquivo fica mantido porque não se sabe quais sites ainda usam o link. Ao mexer num site antigo, troque a tag pela nova (veja o `projetos.html`).

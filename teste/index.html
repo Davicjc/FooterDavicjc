@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Teste dos footers</title>
+<style>
+    :root {
+        --bg: #f4f4f5;
+        --card: #ffffff;
+        --text: #18181b;
+        --muted: #52525b;
+        --border: #e4e4e7;
+        --code-bg: #f4f4f5;
+        --accent: #4f46e5;
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #09090b;
+            --card: #18181b;
+            --text: #f4f4f5;
+            --muted: #a1a1aa;
+            --border: #27272a;
+            --code-bg: #0c0c0e;
+            --accent: #a5b4fc;
+        }
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 16px 64px; }
+    h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -0.02em; }
+    h2 { font-size: 17px; margin: 0; }
+    p { margin: 0; }
+    .lead { color: var(--muted); max-width: 720px; }
+    .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px;
+        margin-top: 18px;
+    }
+    .changes { margin: 10px 0 0; padding-left: 20px; color: var(--muted); }
+    .changes strong { color: var(--text); font-weight: 600; }
+    .note { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    .frames {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+    }
+    figure { margin: 0; }
+    figcaption { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    figcaption span { font-weight: 400; color: var(--muted); }
+    iframe {
+        display: block;
+        width: 100%;
+        height: 230px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+    }
+    code, pre { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 13px; }
+    pre {
+        background: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px;
+        margin: 10px 0 0;
+        overflow-x: auto;
+        white-space: pre;
+    }
+    p code { color: var(--accent); }
+    .toolbar { margin-top: 14px; }
+    .toolbar button {
+        font: inherit;
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--text);
+        cursor: pointer;
+    }
+    @media (max-width: 760px) {
+        .frames { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+<main class="wrap">
+    <h1>Teste dos footers</h1>
+    <p class="lead">Nada aqui foi publicado. Cada quadro é um site de cliente simulado que carrega o arquivo local. À esquerda o footer do Davi, à direita o da parceria.</p>
+
+    <section class="card">
+        <h2>Como os footers funcionam</h2>
+        <ul class="changes">
+            <li><strong>Card ao clicar:</strong> em vez de ir direto para o portfólio, abre um card "marca do desenvolvedor" perguntando se quer visitar. Na parceria aparecem os dois portfólios, davicjc primeiro. Fecha clicando fora, com Esc ou ao escolher.</li>
+            <li><strong>Sem arrastar:</strong> o footer fica parado no canto inferior direito, no fim da página, como antes.</li>
+            <li><strong>Visual mono:</strong> fonte de código, tudo minúsculo, borda fina e seta ↗. Na parceria, um traço separa o "by" e uma linha fina separa os dois nomes.</li>
+            <li><strong>Se ajusta ao fundo:</strong> caixa clara em site claro (inclusive gradientes), escura em site escuro e mais escura sobre fotos, para continuar legível.</li>
+            <li><strong>Protegido do CSS do cliente:</strong> o footer e o card ficam isolados (Shadow DOM), então nenhuma regra do site muda o visual deles.</li>
+            <li><strong>Sem duplicar:</strong> se o script for colado duas vezes, aparece um footer só.</li>
+        </ul>
+        <div class="toolbar">
+            <button type="button" id="abrir-cards">Abrir todos os cards</button>
+        </div>
+    </section>
+
+    <div id="cenas"></div>
+
+    <section class="card">
+        <h2>Como usar (depois de publicar no domínio)</h2>
+        <p class="note">Todas as tags prontas estão no <code>projetos.html</code>.</p>
+        <pre>&lt;script src="https://recursos.cjc.pics/projetos/footer-terceiros/paulog.js" defer&gt;&lt;/script&gt;</pre>
+    </section>
+</main>
+
+<script>
+    const VERSOES = [
+        { nome: 'Novo', detalhe: 'By Davicjc', src: '../projetos/footer-davi/footer.js', novo: true },
+        { nome: 'Novo', detalhe: 'Davicjc / PauloG', src: '../projetos/footer-terceiros/paulog.js', novo: true }
+    ];
+
+    const BASE_CSS = 'html,body{margin:0;height:100%}' +
+        'body{display:flex;flex-direction:column;font-family:system-ui,sans-serif}' +
+        'main{flex:1;padding:16px}' +
+        'h1{margin:0 0 6px;font-size:15px}' +
+        'p{margin:0;font-size:12px;line-height:1.5;opacity:.75}';
+
+    function site(topo) {
+        return '<header style="height:32px;background:' + topo + '"></header>' +
+            '<main><h1>Empresa Exemplo</h1>' +
+            '<p>Texto do site do cliente. <a href="#">Um link do site</a> no meio do conteúdo.</p></main>';
+    }
+
+    // "Foto" gerada em SVG para simular um site com imagem de fundo
+    const FOTO = 'data:image/svg+xml,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs>' +
+        '<rect width="400" height="240" fill="url(#g)"/>' +
+        '<circle cx="330" cy="215" r="95" fill="#fde68a" opacity=".85"/>' +
+        '<circle cx="70" cy="50" r="80" fill="#1e3a8a" opacity=".55"/></svg>'
+    );
+
+    const CENAS = [
+        {
+            titulo: 'Site escuro',
+            nota: 'Caixa escura discreta.',
+            css: 'body{background:#0f172a;color:#e2e8f0} a{color:#93c5fd}',
+            html: site('#1e293b')
+        },
+        {
+            titulo: 'Site claro',
+            nota: 'Caixa clara. O fundo usa cor oklch, como sites feitos com Tailwind v4.',
+            css: 'body{background:oklch(0.985 0 0);color:#18181b}',
+            html: site('#e4e4e7')
+        },
+        {
+            titulo: 'Site claro com rodapé escuro',
+            nota: 'Percebe o rodapé escuro atrás dele e usa a caixa escura.',
+            css: 'body{background:#ffffff;color:#18181b} footer{background:#111827;color:#9ca3af;padding:14px 16px;font-size:11px}',
+            html: site('#e4e4e7') + '<footer>© 2026 Empresa Exemplo</footer>'
+        },
+        {
+            titulo: 'Site com CSS genérico agressivo',
+            nota: 'O site tem regras para toda div, a e span. O footer não é afetado.',
+            css: 'body{background:#f8fafc;color:#0f172a}' +
+                'div{background:#fde047;border:2px dashed #dc2626;margin:6px;padding:12px}' +
+                'a{color:#dc2626;font-weight:800;font-size:16px;text-decoration:underline wavy}' +
+                'span{text-transform:uppercase;letter-spacing:3px}',
+            html: site('#cbd5e1')
+        },
+        {
+            titulo: 'Site colorido',
+            nota: 'A caixa é translúcida e pega um pouco da cor do site.',
+            css: 'body{background:#2563eb;color:#eff6ff} a{color:#fde68a}',
+            html: site('#1d4ed8')
+        },
+        {
+            titulo: 'Gradiente claro',
+            nota: 'Lê as cores do gradiente e usa a caixa clara.',
+            css: 'body{background:linear-gradient(135deg,#fef3c7,#dbeafe);color:#18181b}',
+            html: site('rgba(255,255,255,.6)')
+        },
+        {
+            titulo: 'Foto de fundo',
+            nota: 'Não dá para ler a cor de uma foto, então usa a caixa mais escura, que fica legível sobre qualquer imagem.',
+            css: 'body{background:url("' + FOTO + '") center/cover;color:#fff}',
+            html: site('rgba(0,0,0,.25)')
+        }
+    ];
+
+    const container = document.getElementById('cenas');
+
+    CENAS.forEach((cena) => {
+        const card = document.createElement('section');
+        card.className = 'card';
+
+        const titulo = document.createElement('h2');
+        titulo.textContent = cena.titulo;
+        const nota = document.createElement('p');
+        nota.className = 'note';
+        nota.textContent = cena.nota;
+
+        const frames = document.createElement('div');
+        frames.className = 'frames';
+
+        VERSOES.forEach((versao) => {
+            const figure = document.createElement('figure');
+            const legenda = document.createElement('figcaption');
+            legenda.textContent = versao.nome + ' ';
+            const detalhe = document.createElement('span');
+            detalhe.textContent = '· ' + versao.detalhe;
+            legenda.appendChild(detalhe);
+
+            const attrs = versao.novo && cena.attrs ? ' ' + cena.attrs : '';
+            const iframe = document.createElement('iframe');
+            iframe.title = cena.titulo + ' — ' + versao.nome + ' ' + versao.detalhe;
+            iframe.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><style>' +
+                BASE_CSS + cena.css + '</style></head><body>' + cena.html +
+                '<script src="' + versao.src + '"' + attrs + '><\/script></body></html>';
+
+            figure.append(legenda, iframe);
+            frames.appendChild(figure);
+        });
+
+        card.append(titulo, nota, frames);
+        container.appendChild(card);
+    });
+
+    // Abre o card dos footers novos em todos os quadros, para comparar sem clicar um por um
+    function abrirCards() {
+        document.querySelectorAll('iframe').forEach((iframe) => {
+            const doc = iframe.contentDocument;
+            const host = doc && doc.querySelector('[id^="davicjc-"][id$="footer"]');
+            const badge = host && host.shadowRoot && host.shadowRoot.querySelector('.badge');
+            if (badge && badge.getAttribute('aria-expanded') !== 'true') badge.click();
+        });
+    }
+    document.getElementById('abrir-cards').addEventListener('click', abrirCards);
+    if (location.hash === '#cards') addEventListener('load', () => setTimeout(abrirCards, 300));
+</script>
+</body>
+</html>
