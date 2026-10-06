@@ -1,4 +1,30 @@
-# FooterDavicjc
+<p align="center">
+  <img src=".github/readme/banner.png" alt="FooterDavicjc" width="100%">
+</p>
+
+<p align="center">
+  <img alt="👤 Projeto pessoal" src="https://img.shields.io/badge/%F0%9F%91%A4_Projeto_pessoal-6E40C9?style=for-the-badge">
+  <a href="https://footer.davicjc.com/"><img alt="🌐 Ver o site" src="https://img.shields.io/badge/%F0%9F%8C%90_Ver_o_site-1DB954?style=for-the-badge"></a>
+  <img alt="HTML5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img alt="CSS3" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
+  <img alt="Cloudflare" src="https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white">
+</p>
+
+<p align="center">O selo de assinatura arrastável que aparece no canto dos sites feitos por davicjc — e a página que explica o que ele é.</p>
+
+
+<p align="center">
+  <img src=".github/readme/preview.png" alt="Prévia de FooterDavicjc no computador e no celular" width="100%">
+</p>
+
+### 📸 Telas do sistema
+
+<p align="center">
+  <img src=".github/readme/telas.png" alt="Telas de FooterDavicjc" width="100%">
+</p>
+
+---
 
 Scripts e arquivos do **davicjc** para os sites dos clientes, servidos em https://recursos.cjc.pics/ (Cloudflare Pages). Hoje: o footer de assinatura, que mostra `by davicjc` no canto do site e, ao clicar, abre um card com o portfólio.
 
@@ -102,3 +128,7 @@ LIMIT 50;
 ## Sites antigos
 
 Sites antigos usam `cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js`, que lê o `footer_cjc.js` da raiz deste repositório. O arquivo fica mantido porque não se sabe quais sites ainda usam o link. Ele é só um carregador: busca o `projetos/footer-davi/footer_davicjc.js` em `recursos.cjc.pics` (e, se falhar, pelo jsDelivr). Por passar pelo `recursos.cjc.pics`, esses sites também aparecem no contador. Ao mexer num site antigo, troque a tag pela nova (veja o `projetos.html`).
+
+---
+
+<p align="center">Feito por <a href="https://github.com/Davicjc">Davi Castro</a> · <a href="https://davicjc.com">davicjc.com</a></p>
