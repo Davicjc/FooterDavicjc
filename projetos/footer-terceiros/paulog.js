@@ -21,6 +21,8 @@
         'M12 10.3a1.7 1.7 0 1 0 0 3.4a1.7 1.7 0 1 0 0-3.4z' +
         'M11.45 13.5h1.1V22h-1.1z"/></svg>';
     const ARROW = '\u2197';
+    // Contato que aparece no card s\u00f3 quando o footer tem um nome (o do Davi sozinho)
+    const CONTACT_EMAIL = 'contato@davicjc.com';
     const MEDIA_TAGS = /^(img|video|canvas|iframe|svg|picture|object|embed)$/i;
     const COLOR_FUNCTIONS = /(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\([^()]*\)/g;
 
@@ -167,6 +169,8 @@
             transition: background-color 0.15s ease;
         }
         .action:hover { background: var(--dvc-hover); }
+        .contact { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--dvc-line); }
+        .contact .text { margin-bottom: 8px; }
         .prompt:focus-visible, .abrir:focus-visible, .action:focus-visible, .mini:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
         @media (prefers-reduced-motion: reduce) {
             .card, .open .card { transition: none; }
@@ -190,6 +194,14 @@
             '<span class="arrow" aria-hidden="true">' + ARROW + '</span></a>'
         ).join('');
 
+        // Botão de e-mail só no footer de um nome; nas parcerias o card fica como está.
+        // É um link mailto comum: abre o e-mail do visitante só quando ele clica.
+        const contact = several ? '' :
+            '<div class="contact">' +
+            '<p class="text">Deseja contato ou achou um bug?</p>' +
+            '<div class="actions"><a class="action" href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a></div>' +
+            '</div>';
+
         // Selo começa com ">" (estilo terminal), que é o botão de minimizar. Um nome: "> by davicjc".
         // Vários: "> by", traço vertical e nomes empilhados com linha fina entre eles
         const label = several
@@ -203,6 +215,7 @@
             '<p class="eyebrow">// marca do desenvolvedor</p>' +
             '<p class="text">Este site foi desenvolvido por ' + credits + '. ' + question + '</p>' +
             '<div class="actions">' + actions + '</div>' +
+            contact +
             '</div>' +
             '<div class="badge">' +
             '<button class="prompt" type="button" aria-label="Minimizar assinatura" title="Minimizar"><span>&gt;</span></button>' +
