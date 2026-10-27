@@ -9,12 +9,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const DAVICJC = { name: 'Davicjc', url: 'https://davicjc.github.io/PortfolioPessoal' };
+// email, negocio e coffee são opcionais: sem eles, o botão não aparece no card
+const DAVICJC = { name: 'Davicjc', url: 'https://davicjc.com', email: 'contato@davicjc.com', coffee: 'https://davicjc.com/coffee/' };
 
 // Um arquivo por parceiro: projetos/footer-terceiros/<chave>.js
 // Davicjc sempre em primeiro.
 const PARCEIROS = {
-    paulog: [DAVICJC, { name: 'PauloG', url: 'https://www.paulogfribeiro.lat/' }]
+    paulog: [DAVICJC, { name: 'PauloG', url: 'https://www.paulogfribeiro.lat/', negocio: 'https://linktr.ee/PauloGFRibeiro' }]
 };
 
 const raiz = path.join(__dirname, '..');
@@ -31,7 +32,9 @@ if (idLinha < 0 || devInicio < 0 || devFim < 0) {
 
 for (const [chave, devs] of Object.entries(PARCEIROS)) {
     const saida = linhas.slice();
-    const lista = devs.map((d) => `        { name: '${d.name}', url: '${d.url}' }`).join(',\n');
+    const lista = devs.map((d) =>
+        '        { ' + Object.entries(d).map(([campo, valor]) => `${campo}: '${valor}'`).join(', ') + ' }'
+    ).join(',\n');
     saida.splice(devInicio, devFim - devInicio + 1,
         '    // Gerado por assets/gerar-parcerias.js. Não edite à mão.',
         '    const DEVELOPERS = [',

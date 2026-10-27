@@ -105,6 +105,11 @@ h1 em{ font-style:normal; color:var(--accent); }
 .nome{ font-weight:600; font-size:15px; overflow-wrap:anywhere; }
 .tipo, .peso{ font-family:var(--mono); font-size:11.5px; color:var(--muted); letter-spacing:.04em; }
 .tipo{ color:var(--accent); text-transform:uppercase; letter-spacing:.12em; }
+/* Arquivo antigo, mantido só para os sites que já usam */
+.old{
+  align-self:center; padding:1px 7px; border:1px solid var(--line); border-radius:4px;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+}
 
 .campo{
   display:grid; grid-template-columns:44px minmax(0, 1fr) auto; align-items:center; gap:10px;

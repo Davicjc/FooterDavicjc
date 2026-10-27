@@ -10,7 +10,7 @@ Scripts e arquivos que o davicjc coloca nos sites dos clientes (hoje: o footer d
 
 ```
 index.html                       ← página do domínio: explica o que é para quem chega pelo código de um site
-projetos.html                    ← lista automática (via API do GitHub) de tudo em projetos/, com link, tag e popup "Ver exemplo"
+projetos.html                    ← lista automática (via API do GitHub) de tudo em projetos/, com link, tag e popup "Ver exemplo"; o footer_cjc.js legado aparece no grupo footer-davi com a tag "old"
 assets/                          ← arquivos das páginas (index.css/js, projetos.css/js, favicon.svg, fundo.mp4) e gerar-parcerias.js (gera os footers de parceria)
 projetos/                        ← uma subpasta por projeto
   footer-davi/footer_davicjc.js  ← footer "by davicjc" (fonte da verdade do código)

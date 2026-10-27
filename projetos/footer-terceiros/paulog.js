@@ -3,10 +3,11 @@
 
     // Único trecho que muda entre os arquivos de footer
     const FOOTER_ID = 'davicjc-paulog-footer';
+    // email, negocio e coffee são opcionais: sem eles, o botão não aparece
     // Gerado por assets/gerar-parcerias.js. Não edite à mão.
     const DEVELOPERS = [
-        { name: 'Davicjc', url: 'https://davicjc.github.io/PortfolioPessoal' },
-        { name: 'PauloG', url: 'https://www.paulogfribeiro.lat/' }
+        { name: 'Davicjc', url: 'https://davicjc.com', email: 'contato@davicjc.com', coffee: 'https://davicjc.com/coffee/' },
+        { name: 'PauloG', url: 'https://www.paulogfribeiro.lat/', negocio: 'https://linktr.ee/PauloGFRibeiro' }
     ];
 
     const THEME_ATTR = 'data-davicjc-theme';
@@ -21,8 +22,6 @@
         'M12 10.3a1.7 1.7 0 1 0 0 3.4a1.7 1.7 0 1 0 0-3.4z' +
         'M11.45 13.5h1.1V22h-1.1z"/></svg>';
     const ARROW = '\u2197';
-    // Contato que aparece no card s\u00f3 quando o footer tem um nome (o do Davi sozinho)
-    const CONTACT_EMAIL = 'contato@davicjc.com';
     const MEDIA_TAGS = /^(img|video|canvas|iframe|svg|picture|object|embed)$/i;
     const COLOR_FUNCTIONS = /(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\([^()]*\)/g;
 
@@ -61,7 +60,7 @@
             display: flex;
             align-items: stretch;
             gap: 5px;
-            padding: 2px 6px 2px 3px;
+            padding: 2px 6px;
             border: 1px solid var(--dvc-badge-border);
             border-radius: 3px;
             background: var(--dvc-badge-bg);
@@ -69,28 +68,32 @@
             font-size: 8.5px;
             line-height: 1.25;
             white-space: nowrap;
+            /* Segurar o dedo no selo abre o menu "minimizar", sem selecionar texto */
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
         }
-        /* ">" minimiza o selo; o resto ("by" e nomes) abre o card.
-           A caixinha em volta dele mostra que é um botão separado. */
-        .prompt {
+        /* Menu do clique direito (ou toque longo) no selo: só tem "minimizar" */
+        .menu {
             all: unset;
             box-sizing: border-box;
-            align-self: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 11px;
-            height: 11px;
-            border: 1px solid var(--dvc-badge-border);
-            border-radius: 2px;
-            background: var(--dvc-hover);
-            line-height: 1;
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 6px);
+            display: none;
+            padding: 4px 10px;
+            border: 1px solid var(--dvc-line);
+            border-radius: 4px;
+            background: var(--dvc-card-bg);
+            color: var(--dvc-card-fg);
+            box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.45);
+            font-size: 10.5px;
+            line-height: 1.5;
+            white-space: nowrap;
             cursor: pointer;
-            transition: border-color 0.15s ease;
         }
-        .prompt span { opacity: 0.6; transition: opacity 0.15s ease; }
-        .prompt:hover { border-color: currentColor; }
-        .prompt:hover span { opacity: 1; }
+        .menu:hover { background-image: linear-gradient(var(--dvc-hover), var(--dvc-hover)); }
+        .menu-open .menu { display: block; }
         .abrir {
             all: unset;
             display: flex;
@@ -169,9 +172,10 @@
             transition: background-color 0.15s ease;
         }
         .action:hover { background: var(--dvc-hover); }
-        .contact { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--dvc-line); }
+        .contact, .dev + .dev { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--dvc-line); }
         .contact .text { margin-bottom: 8px; }
-        .prompt:focus-visible, .abrir:focus-visible, .action:focus-visible, .mini:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+        .who { margin: 0 0 6px; font-weight: 600; }
+        .menu:focus-visible, .abrir:focus-visible, .action:focus-visible, .mini:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
         @media (prefers-reduced-motion: reduce) {
             .card, .open .card { transition: none; }
             .anima .badge, .anima .mini { animation: none; }
@@ -188,22 +192,39 @@
             : madeBy[0];
         const question = several ? 'Deseja visitar os portf\u00f3lios?' : 'Deseja visitar o portf\u00f3lio?';
 
-        const actions = DEVELOPERS.map((dev, i) =>
-            '<a class="action" href="' + dev.url + '" target="_blank" rel="noopener">' +
-            (several ? names[i] : 'visitar portf\u00f3lio') +
-            '<span class="arrow" aria-hidden="true">' + ARROW + '</span></a>'
-        ).join('');
+        const site = (url, text) =>
+            '<a class="action" href="' + url + '" target="_blank" rel="noopener">' + text +
+            '<span class="arrow" aria-hidden="true">' + ARROW + '</span></a>';
+        // Link mailto comum: abre o e-mail do visitante só quando ele clica
+        const mail = (email) => '<a class="action" href="mailto:' + email + '">' + email + '</a>';
 
-        // Botão de e-mail só no footer de um nome; nas parcerias o card fica como está.
-        // É um link mailto comum: abre o e-mail do visitante só quando ele clica.
-        const contact = several ? '' :
-            '<div class="contact">' +
-            '<p class="text">Deseja contato ou achou um bug?</p>' +
-            '<div class="actions"><a class="action" href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a></div>' +
-            '</div>';
+        // Um nome: portfólio e café lado a lado, e-mail embaixo com a pergunta de contato.
+        // Vários: um bloco por pessoa com o nome e os botões dela (portfólio, negócio, café, e-mail)
+        let body;
+        if (several) {
+            body = DEVELOPERS.map((dev, i) =>
+                '<div class="dev"><p class="who">' + names[i] + '</p><div class="actions">' +
+                site(dev.url, 'portf\u00f3lio') +
+                (dev.negocio ? site(dev.negocio, 'neg\u00f3cio') : '') +
+                (dev.coffee ? site(dev.coffee, 'buy me a coffee') : '') +
+                (dev.email ? mail(dev.email) : '') +
+                '</div></div>'
+            ).join('');
+        } else {
+            const dev = DEVELOPERS[0];
+            body = '<div class="actions">' +
+                site(dev.url, 'visitar portf\u00f3lio') +
+                (dev.negocio ? site(dev.negocio, 'neg\u00f3cio') : '') +
+                (dev.coffee ? site(dev.coffee, 'buy me a coffee') : '') +
+                '</div>' +
+                (dev.email
+                    ? '<div class="contact"><p class="text">Deseja contato ou achou um bug?</p>' +
+                        '<div class="actions">' + mail(dev.email) + '</div></div>'
+                    : '');
+        }
 
-        // Selo começa com ">" (estilo terminal), que é o botão de minimizar. Um nome: "> by davicjc".
-        // Vários: "> by", traço vertical e nomes empilhados com linha fina entre eles
+        // Selo: um nome fica "by davicjc".
+        // Vários: "by", traço vertical e nomes empilhados com linha fina entre eles
         const label = several
             ? '<span class="rule"></span><span class="names">' +
                 names.map((name) => '<span class="name">' + name + '</span>').join('<span class="sep"></span>') +
@@ -214,11 +235,10 @@
             '<div class="card" role="dialog" aria-label="Marca do desenvolvedor">' +
             '<p class="eyebrow">// marca do desenvolvedor</p>' +
             '<p class="text">Este site foi desenvolvido por ' + credits + '. ' + question + '</p>' +
-            '<div class="actions">' + actions + '</div>' +
-            contact +
+            body +
             '</div>' +
+            '<button class="menu" type="button" aria-label="Minimizar assinatura">minimizar</button>' +
             '<div class="badge">' +
-            '<button class="prompt" type="button" aria-label="Minimizar assinatura" title="Minimizar"><span>&gt;</span></button>' +
             '<button class="abrir" type="button" aria-haspopup="dialog" aria-expanded="false">' +
             '<span class="by">by</span>' + label +
             '</button>' +
@@ -251,17 +271,22 @@
         const abrir = root.querySelector('.abrir');
         const firstAction = root.querySelector('.action');
         const mini = root.querySelector('.mini');
+        const badge = root.querySelector('.badge');
+        const menu = root.querySelector('.menu');
 
-        function setOpen(open) {
-            wrap.classList.toggle('open', open);
-            abrir.setAttribute('aria-expanded', String(open));
+        // O que fica aberto acima do selo: 'card', 'menu' (o "minimizar") ou null
+        function show(panel) {
+            wrap.classList.toggle('open', panel === 'card');
+            wrap.classList.toggle('menu-open', panel === 'menu');
+            abrir.setAttribute('aria-expanded', String(panel === 'card'));
             // Aberto, o card fica acima de qualquer coisa do site (chat, cookies...)
-            footer.style.zIndex = open ? Z_OPEN : Z_CLOSED;
+            footer.style.zIndex = panel ? Z_OPEN : Z_CLOSED;
 
-            if (open) {
+            if (panel) {
                 document.addEventListener('pointerdown', onPointerDownOutside, true);
                 document.addEventListener('keydown', onKeyDown, true);
-                requestAnimationFrame(() => firstAction.focus({ preventScroll: true }));
+                const target = panel === 'card' ? firstAction : menu;
+                requestAnimationFrame(() => target.focus({ preventScroll: true }));
             } else {
                 document.removeEventListener('pointerdown', onPointerDownOutside, true);
                 document.removeEventListener('keydown', onKeyDown, true);
@@ -269,28 +294,57 @@
         }
 
         function onPointerDownOutside(e) {
-            if (!e.composedPath().includes(footer)) setOpen(false);
+            if (!e.composedPath().includes(footer)) show(null);
         }
 
         function onKeyDown(e) {
             if (e.key !== 'Escape') return;
-            setOpen(false);
+            show(null);
             abrir.focus({ preventScroll: true });
         }
 
         // Minimizar vale só para esta página: nada é gravado no navegador do visitante
         function setCollapsed(collapsed) {
-            setOpen(false);
+            show(null);
             wrap.classList.add('anima');
             wrap.classList.toggle('collapsed', collapsed);
             (collapsed ? mini : abrir).focus({ preventScroll: true });
         }
 
-        abrir.addEventListener('click', () => setOpen(!wrap.classList.contains('open')));
-        root.querySelector('.prompt').addEventListener('click', () => setCollapsed(true));
+        // Clique direito no selo mostra "minimizar" no lugar do menu do navegador.
+        // Só em cima do selo: no resto da página o clique direito continua normal.
+        badge.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            show('menu');
+        });
+
+        // No celular, o mesmo menu abre segurando o dedo no selo (o iPhone não tem clique direito)
+        let pressTimer = null;
+        let longPress = false;
+        badge.addEventListener('pointerdown', (e) => {
+            longPress = false;
+            if (e.pointerType !== 'touch') return;
+            pressTimer = setTimeout(() => {
+                longPress = true;
+                show('menu');
+            }, 500);
+        });
+        ['pointerup', 'pointercancel', 'pointerleave'].forEach((type) => {
+            badge.addEventListener(type, () => clearTimeout(pressTimer));
+        });
+
+        abrir.addEventListener('click', () => {
+            // Soltar o dedo depois do toque longo não abre o card
+            if (longPress) {
+                longPress = false;
+                return;
+            }
+            show(wrap.classList.contains('open') ? null : 'card');
+        });
+        menu.addEventListener('click', () => setCollapsed(true));
         mini.addEventListener('click', () => setCollapsed(false));
         root.querySelectorAll('.action').forEach((action) => {
-            action.addEventListener('click', () => setOpen(false));
+            action.addEventListener('click', () => show(null));
         });
 
         // O footer fica no fim da página usando o body como referência.
