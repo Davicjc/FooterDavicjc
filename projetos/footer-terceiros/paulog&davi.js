@@ -2,7 +2,7 @@
     'use strict';
 
     // Único trecho que muda entre os arquivos de footer
-    const FOOTER_ID = 'davicjc-paulog-footer';
+    const FOOTER_ID = 'davicjc-paulog&davi-footer';
     // email, negocio e coffee são opcionais: sem eles, o botão não aparece
     // Gerado por assets/gerar-parcerias.js. Não edite à mão.
     const DEVELOPERS = [

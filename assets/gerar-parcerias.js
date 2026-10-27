@@ -15,7 +15,7 @@ const DAVICJC = { name: 'Davicjc', url: 'https://davicjc.com', email: 'contato@d
 // Um arquivo por parceiro: projetos/footer-terceiros/<chave>.js
 // Davicjc sempre em primeiro.
 const PARCEIROS = {
-    paulog: [DAVICJC, { name: 'PauloG', url: 'https://www.paulogfribeiro.lat/', negocio: 'https://linktr.ee/PauloGFRibeiro' }]
+    'paulog&davi': [DAVICJC, { name: 'PauloG', url: 'https://www.paulogfribeiro.lat/', negocio: 'https://linktr.ee/PauloGFRibeiro' }]
 };
 
 const raiz = path.join(__dirname, '..');

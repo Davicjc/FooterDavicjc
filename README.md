@@ -53,7 +53,7 @@ A lista completa, com botão de copiar, fica em https://recursos.cjc.pics/projet
 <script src="https://recursos.cjc.pics/projetos/footer-davi/footer_davicjc.js" defer></script>
 
 <!-- footer da parceria com o PauloG -->
-<script src="https://recursos.cjc.pics/projetos/footer-terceiros/paulog.js" defer></script>
+<script src="https://recursos.cjc.pics/projetos/footer-terceiros/paulog&davi.js" defer></script>
 ```
 
 ## Alterar o footer
