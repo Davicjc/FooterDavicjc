@@ -13,7 +13,7 @@ Nada nesta lista entra em script ou página publicada, nem "só para testar".
 
 - **Ofuscação:** nada de código ofuscado, embaralhado ou em base64 para esconder o que faz. Código legível é proteção.
 - **Execução de texto como código:** proibido `eval`, `new Function`, `setTimeout`/`setInterval` com string e `document.write`.
-- **Código remoto:** não carregar código de outros domínios em tempo de execução (outros scripts, iframes de terceiros, WebAssembly desconhecido). Única exceção: o `footer_cjc.js` legado carrega o próprio footer do Davi, de `recursos.cjc.pics` ou do jsDelivr deste repositório.
+- **Código remoto:** não carregar código de outros domínios em tempo de execução (outros scripts, iframes de terceiros, WebAssembly desconhecido).
 - **Mineração:** nada de mineração de criptomoeda nem uso pesado de CPU em segundo plano.
 
 ## 2. Redirecionar ou prender o visitante

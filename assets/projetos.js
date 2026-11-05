@@ -3,7 +3,7 @@
 // além de um exemplo funcionando num popup.
 // Arquivos ou pastas que começam com "_" ou "." são internos e não aparecem.
 
-const DOMINIO = 'https://recursos.cjc.pics/';
+const DOMINIO = 'https://footer.davicjc.com/';
 const REPO = 'davicjc/FooterDavicjc';
 const BRANCH = 'main';
 const PASTA = 'projetos/';

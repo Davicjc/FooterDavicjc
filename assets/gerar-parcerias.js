@@ -1,6 +1,6 @@
 // Gera os footers de parceria (projetos/footer-terceiros/<parceiro>.js)
 // a partir do footer do Davi (projetos/footer-davi/footer_davicjc.js).
-// O footer_cjc.js legado não precisa disto: ele só carrega o footer do Davi.
+// O footer_cjc.js legado não é gerado aqui: é uma cópia do footer do Davi (copiar à mão).
 // O código é sempre o mesmo; só mudam o id e a lista de nomes. Assim você edita um arquivo só.
 //
 // Uso (na raiz do repositório): node assets/gerar-parcerias.js

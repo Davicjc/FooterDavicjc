@@ -26,7 +26,7 @@
 
 ---
 
-Scripts e arquivos do **davicjc** para os sites dos clientes, servidos em https://recursos.cjc.pics/ (Cloudflare Pages). Hoje: o footer de assinatura, que mostra `by davicjc` no canto do site e, ao clicar, abre um card com o portfólio.
+Scripts e arquivos do **davicjc** para os sites dos clientes, servidos em https://footer.davicjc.com/ (Cloudflare Pages). Hoje: o footer de assinatura, que mostra `by davicjc` no canto do site e, ao clicar, abre um card com o portfólio.
 
 ## Estrutura
 
@@ -41,25 +41,25 @@ Scripts e arquivos do **davicjc** para os sites dos clientes, servidos em https:
 | `assets/gerar-parcerias.js` | Cria os footers de parceria copiando o footer do Davi e trocando os nomes |
 | `functions/projetos/[[caminho]].js` | Contador de carregamentos no servidor (ver abaixo) |
 | `teste/index.html` | Teste com sites simulados (claro, escuro, foto, CSS agressivo) |
-| `footer_cjc.js` | **Legado**: usado por sites antigos via jsDelivr. Só carrega o footer do Davi (não tem código próprio). Não apagar |
+| `footer_cjc.js` | **Legado**: usado por sites antigos via jsDelivr. Cópia idêntica do `projetos/footer-davi/footer_davicjc.js`. Não apagar |
 | `rules.md` | O que nunca pode entrar nos scripts, para não manchar o domínio |
 
 ## Usar em um site
 
-A lista completa, com botão de copiar, fica em https://recursos.cjc.pics/projetos.html e se atualiza sozinha a cada push.
+A lista completa, com botão de copiar, fica em https://footer.davicjc.com/projetos.html e se atualiza sozinha a cada push.
 
 ```html
 <!-- footer do davicjc -->
-<script src="https://recursos.cjc.pics/projetos/footer-davi/footer_davicjc.js" defer></script>
+<script src="https://footer.davicjc.com/projetos/footer-davi/footer_davicjc.js" defer></script>
 
 <!-- footer da parceria com o PauloG -->
-<script src="https://recursos.cjc.pics/projetos/footer-terceiros/paulog&davi.js" defer></script>
+<script src="https://footer.davicjc.com/projetos/footer-terceiros/paulog&davi.js" defer></script>
 ```
 
 ## Alterar o footer
 
 1. Editar `projetos/footer-davi/footer_davicjc.js`.
-2. Rodar `node assets/gerar-parcerias.js`. Ele recria os footers de parceria com a mesma mudança. O `footer_cjc.js` legado não precisa de nada: ele já carrega o footer do Davi.
+2. Rodar `node assets/gerar-parcerias.js`. Ele recria os footers de parceria com a mesma mudança. Depois, copiar o `footer_davicjc.js` por cima do `footer_cjc.js` legado, para os sites antigos receberem a mudança.
 3. Abrir `teste/index.html` no navegador e conferir.
 4. Revisar a lista do `rules.md` antes do push, porque o push publica em todos os sites.
 
@@ -69,7 +69,7 @@ A lista completa, com botão de copiar, fica em https://recursos.cjc.pics/projet
 
 - Projeto ligado a este repositório, branch `main`.
 - Framework: nenhum. Comando de build: vazio. Diretório de saída: raiz (deixe vazio ou `/`).
-- Domínio personalizado: `recursos.cjc.pics`.
+- Domínio personalizado: `footer.davicjc.com`.
 - Tudo no repositório fica acessível pelo domínio.
 
 ## Contador de carregamentos
@@ -127,7 +127,7 @@ LIMIT 50;
 
 ## Sites antigos
 
-Sites antigos usam `cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js`, que lê o `footer_cjc.js` da raiz deste repositório. O arquivo fica mantido porque não se sabe quais sites ainda usam o link. Ele é só um carregador: busca o `projetos/footer-davi/footer_davicjc.js` em `recursos.cjc.pics` (e, se falhar, pelo jsDelivr). Por passar pelo `recursos.cjc.pics`, esses sites também aparecem no contador. Ao mexer num site antigo, troque a tag pela nova (veja o `projetos.html`).
+Sites antigos usam `cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js`, que lê o `footer_cjc.js` da raiz deste repositório. O arquivo fica mantido porque não se sabe quais sites ainda usam o link. Ele é uma cópia idêntica do `projetos/footer-davi/footer_davicjc.js` e precisa ser atualizado junto. Sites novos usam só `https://footer.davicjc.com/projetos/footer-davi/footer_davicjc.js`; carregamentos pelo jsDelivr não passam pelo contador.
 
 ---
 
