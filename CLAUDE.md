@@ -10,7 +10,7 @@ Scripts e arquivos que o davicjc coloca nos sites dos clientes (hoje: o footer d
 
 ```
 index.html                       ← página do domínio: explica o que é para quem chega pelo código de um site
-projetos.html                    ← lista automática (via API do GitHub) de tudo em projetos/, com link, tag e popup "Ver exemplo"
+projetos.html                    ← lista automática (via API do GitHub) de tudo em projetos/, com link, tag e popup "Ver exemplo"; o footer_cjc.js legado aparece no grupo footer-davi com a tag "old"
 assets/                          ← arquivos das páginas (index.css/js, projetos.css/js, favicon.svg, fundo.mp4) e gerar-parcerias.js (gera os footers de parceria)
 projetos/                        ← uma subpasta por projeto
   footer-davi/footer_davicjc.js  ← footer "by davicjc" (fonte da verdade do código)
@@ -18,6 +18,7 @@ projetos/                        ← uma subpasta por projeto
     <parceiro>.js                ← footers de parceria, GERADOS a partir do footer-davi
 functions/projetos/[[caminho]].js ← Pages Function: conta carregamentos de projetos/ no D1 (binding DB)
 teste/index.html                 ← teste com sites simulados
+footer_cjc.js                    ← LEGADO: cópia idêntica do footer do Davi, ver abaixo
 README.md · CLAUDE.md · rules.md · .gitignore · .gitattributes
 ```
 
@@ -26,7 +27,7 @@ A raiz inteira é publicada (Cloudflare Pages com diretório de saída na raiz).
 ## Cuidados
 
 - **Commit e push:** nunca fazer sem o Davi pedir. Todo push em `main` publica.
-- **Endereço:** o único oficial é `https://footer.davicjc.com/`. O `recursos.cjc.pics` aponta para o mesmo Pages e fica ligado para quem já usa, mas não deve aparecer em código nem documentação nova. O antigo `footer_cjc.js` (jsDelivr) foi removido em 05/11/2026: não recriar.
+- **Legado:** `footer_cjc.js` na raiz é carregado por sites antigos via `cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js`. Não se sabe quais sites ainda usam, então não apagar, mover nem renomear. Ele é uma cópia idêntica de `projetos/footer-davi/footer_davicjc.js`: a cada mudança no footer do Davi, copiar por cima (`cp projetos/footer-davi/footer_davicjc.js footer_cjc.js`). Carregamentos pelo jsDelivr não passam pelo contador. O único endereço oficial é `https://footer.davicjc.com/` (o domínio antigo `recursos.cjc.pics` não deve aparecer em código nem documentação).
 - **Onde editar o footer:** só em `projetos/footer-davi/footer_davicjc.js`. Depois, rodar `node assets/gerar-parcerias.js`. Nunca editar `footer-terceiros/<parceiro>.js` à mão. Novo parceiro: adicionar em `PARCEIROS` no `assets/gerar-parcerias.js` (Davicjc sempre primeiro).
 - **Projeto novo:** criar uma subpasta em `projetos/`. Em `projetos/` fica só o que vai nos sites dos clientes; ferramentas e arquivos de apoio vão em `assets/`.
 - **Contador (`functions/`):** guarda só domínio do site de origem, arquivo e data/hora (UTC). Nunca guardar IP, user-agent, cookies ou a URL completa da página. A gravação roda em `waitUntil` e com `catch`: nunca pode atrasar nem quebrar a entrega do arquivo. Configuração do D1 e consultas no README.
