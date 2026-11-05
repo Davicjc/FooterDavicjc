@@ -8,14 +8,6 @@ const REPO = 'davicjc/FooterDavicjc';
 const BRANCH = 'main';
 const PASTA = 'projetos/';
 
-// Footer legado: fica na raiz e os sites antigos o carregam pelo jsDelivr.
-// Aparece no grupo do footer do Davi com a tag "old", para não ir em site novo.
-const LEGADO = {
-  caminho: 'footer_cjc.js',
-  grupo: 'footer-davi',
-  url: 'https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js'
-};
-
 // Tag pronta conforme a extensão do arquivo
 const TIPOS = [
   { nome: 'script', ext: ['js', 'mjs'], tag: (url) => `<script src="${url}" defer></script>` },
@@ -49,8 +41,6 @@ async function carregar() {
       .filter((item) => item.type === 'blob' && item.path.startsWith(PASTA))
       .filter((item) => !item.path.split('/').some((parte) => parte.startsWith('_') || parte.startsWith('.')))
       .map(descrever);
-    const legado = dados.tree.find((item) => item.type === 'blob' && item.path === LEGADO.caminho);
-    if (legado) arquivos.push(descrever(legado));
 
     mostrar(arquivos);
   } catch (erro) {
@@ -85,9 +75,6 @@ function descrever(item) {
     // Caminho relativo: funciona no domínio e abrindo a página no computador
     local: encodeURI(item.path)
   };
-  if (item.path === LEGADO.caminho) {
-    Object.assign(arquivo, { grupo: LEGADO.grupo, url: LEGADO.url, old: true });
-  }
   arquivo.tag = tipo.tag(arquivo.url, arquivo);
   return arquivo;
 }
@@ -123,7 +110,6 @@ function cartao(arq) {
   const cabeca = el('div', 'cabeca');
   cabeca.append(
     el('span', 'nome', arq.nome),
-    ...(arq.old ? [el('span', 'old', 'old')] : []),
     el('span', 'tipo', arq.tipo.nome),
     el('span', 'peso', tamanho(arq.tamanho)),
     arq.tipo === OUTRO ? linkAbrir(arq) : botaoExemplo(arq)

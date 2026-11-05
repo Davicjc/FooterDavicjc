@@ -41,7 +41,6 @@ Scripts e arquivos do **davicjc** para os sites dos clientes, servidos em https:
 | `assets/gerar-parcerias.js` | Cria os footers de parceria copiando o footer do Davi e trocando os nomes |
 | `functions/projetos/[[caminho]].js` | Contador de carregamentos no servidor (ver abaixo) |
 | `teste/index.html` | Teste com sites simulados (claro, escuro, foto, CSS agressivo) |
-| `footer_cjc.js` | **Legado**: usado por sites antigos via jsDelivr. Cópia idêntica do `projetos/footer-davi/footer_davicjc.js`. Não apagar |
 | `rules.md` | O que nunca pode entrar nos scripts, para não manchar o domínio |
 
 ## Usar em um site
@@ -59,7 +58,7 @@ A lista completa, com botão de copiar, fica em https://footer.davicjc.com/proje
 ## Alterar o footer
 
 1. Editar `projetos/footer-davi/footer_davicjc.js`.
-2. Rodar `node assets/gerar-parcerias.js`. Ele recria os footers de parceria com a mesma mudança. Depois, copiar o `footer_davicjc.js` por cima do `footer_cjc.js` legado, para os sites antigos receberem a mudança.
+2. Rodar `node assets/gerar-parcerias.js`. Ele recria os footers de parceria com a mesma mudança.
 3. Abrir `teste/index.html` no navegador e conferir.
 4. Revisar a lista do `rules.md` antes do push, porque o push publica em todos os sites.
 
@@ -125,9 +124,9 @@ LIMIT 50;
 
 `site` vazio significa que o pedido veio sem origem (acesso direto ao arquivo, robôs ou site que esconde a origem).
 
-## Sites antigos
+## Endereço
 
-Sites antigos usam `cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js`, que lê o `footer_cjc.js` da raiz deste repositório. O arquivo fica mantido porque não se sabe quais sites ainda usam o link. Ele é uma cópia idêntica do `projetos/footer-davi/footer_davicjc.js` e precisa ser atualizado junto. Sites novos usam só `https://footer.davicjc.com/projetos/footer-davi/footer_davicjc.js`; carregamentos pelo jsDelivr não passam pelo contador.
+O único endereço para colar nos sites é `https://footer.davicjc.com/`. O domínio `recursos.cjc.pics` aponta para o mesmo projeto e continua respondendo para quem já usa. O antigo `footer_cjc.js` (jsDelivr) foi removido em 05/11/2026.
 
 ---
 
